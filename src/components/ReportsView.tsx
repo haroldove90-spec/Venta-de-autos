@@ -128,12 +128,12 @@ export default function ReportsView({ vehicles, expenses, supplies, role }: Repo
         <div className="bg-slate-900 border border-slate-800 p-5 rounded-2xl flex flex-col justify-between h-32 shadow-md">
           <div className="flex justify-between items-center">
             <span className="text-[11px] font-sans text-slate-400 font-semibold block uppercase">Retorno Operativo del Capital (ROI)</span>
-            <Percent className="w-4 h-4 text-blue-400" />
+            <Percent className="w-4 h-4 text-purple-400" />
           </div>
           <div>
             <span className="text-xl font-bold font-mono text-white">32.8% Neto</span>
             <span className="text-[9px] text-slate-500 ml-1">Promedio General</span>
-            <span className="text-[10px] block text-blue-400 font-bold mt-1">Excluye deducibles de aduana</span>
+            <span className="text-[10px] block text-purple-400 font-bold mt-1">Excluye deducibles de aduana</span>
           </div>
         </div>
 
@@ -159,7 +159,7 @@ export default function ReportsView({ vehicles, expenses, supplies, role }: Repo
                   <th className="py-2.5 px-2 text-right">Inversión Costo</th>
                   <th className="py-2.5 px-2 text-right">Precio Venta</th>
                   <th className="py-2.5 px-2 text-right text-emerald-400">Margen Profit</th>
-                  <th className="py-2.5 px-2 text-right text-blue-400">ROI %</th>
+                  <th className="py-2.5 px-2 text-right text-purple-400">ROI %</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-800/40">
@@ -167,7 +167,7 @@ export default function ReportsView({ vehicles, expenses, supplies, role }: Repo
                   const analytics = getVehicleROIObj(v);
                   return (
                     <tr key={v.id} className="hover:bg-slate-800/20 transition-colors">
-                      <td className="py-2.5 px-2 font-mono text-blue-400 font-semibold">{v.vin}</td>
+                      <td className="py-2.5 px-2 font-mono text-purple-400 font-semibold">{v.vin}</td>
                       <td className="py-2.5 px-2 font-semibold text-slate-200">{v.year} {v.brand} {v.model}</td>
                       <td className="py-2.5 px-2">
                         <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold ${
@@ -179,7 +179,7 @@ export default function ReportsView({ vehicles, expenses, supplies, role }: Repo
                       <td className="py-2.5 px-2 text-right font-mono">${analytics.totalCost.toLocaleString(undefined, { maximumFractionDigits: 0 })}</td>
                       <td className="py-2.5 px-2 text-right font-mono">${analytics.revenue.toLocaleString(undefined, { maximumFractionDigits: 0 })}</td>
                       <td className="py-2.5 px-2 text-right font-mono text-emerald-400 font-extrabold">${analytics.profit.toLocaleString(undefined, { maximumFractionDigits: 0 })}</td>
-                      <td className="py-2.5 px-2 text-right font-mono text-blue-400 font-bold">{analytics.roi.toFixed(1)}%</td>
+                      <td className="py-2.5 px-2 text-right font-mono text-purple-400 font-bold">{analytics.roi.toFixed(1)}%</td>
                     </tr>
                   );
                 })}
@@ -192,7 +192,7 @@ export default function ReportsView({ vehicles, expenses, supplies, role }: Repo
         <div className="bg-slate-900 border border-slate-800 p-5 rounded-2xl flex flex-col justify-between">
           <div className="space-y-4">
             <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
-              <FileText className="w-5 h-5 text-blue-400" />
+              <FileText className="w-5 h-5 text-purple-400" />
               <h3 className="text-xs font-bold text-white uppercase tracking-wider">Cédula de Impuestos y Deducciones</h3>
             </div>
 
@@ -213,15 +213,15 @@ export default function ReportsView({ vehicles, expenses, supplies, role }: Repo
                 <span>Gravamen Estimado ISR:</span>
                 <span>${(salesRevenueRealMXN * 0.045).toLocaleString('es-MX', { maximumFractionDigits: 0 })} MXN</span>
               </div>
-              <div className="flex justify-between text-blue-400 font-semibold">
+              <div className="flex justify-between text-purple-400 font-semibold">
                 <span>IVA Trasladado (16%):</span>
                 <span>${(salesRevenueRealMXN * 0.16).toLocaleString('es-MX', { maximumFractionDigits: 0 })} MXN</span>
               </div>
             </div>
           </div>
 
-          <div className="text-[10px] text-slate-500 bg-blue-500/5 p-3.5 border border-blue-500/10 rounded-xl flex items-start gap-2 mt-4">
-            <HelpCircle className="w-5 h-5 text-blue-400 shrink-0" />
+          <div className="text-[10px] text-slate-500 bg-purple-500/5 p-3.5 border border-purple-500/10 rounded-xl flex items-start gap-2 mt-4">
+            <HelpCircle className="w-5 h-5 text-purple-400 shrink-0" />
             <span>Todos los datos que ingresen los mecánicos en el taller se ven reflejados aquí de forma automática, listos para declaraciones provisionales mensuales.</span>
           </div>
         </div>

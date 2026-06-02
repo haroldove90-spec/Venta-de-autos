@@ -187,7 +187,7 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
         <div>
           <h1 className="text-xl font-sans font-bold text-slate-800 tracking-tight flex items-center gap-2">
             Consola Logística de Importación y Compras
-            <span className="text-xs bg-blue-50 text-blue-600 border border-blue-100 py-0.5 px-2 rounded-full font-mono font-bold">
+            <span className="text-xs bg-indigo-50 text-indigo-600 border border-indigo-150 py-0.5 px-2 rounded-full font-mono font-bold">
               Rol: {role === 'Administrador' ? 'Dueño / Admin' : 'Comprador'}
             </span>
           </h1>
@@ -297,7 +297,7 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
             <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
               <div className="flex items-center justify-between border-b border-slate-100 pb-3">
                 <div className="flex items-center gap-2">
-                  <span className="p-1.5 bg-blue-50 text-blue-600 rounded-lg">
+                  <span className="p-1.5 bg-indigo-50 text-indigo-600 rounded-lg">
                     <PlusCircle className="w-4 h-4" />
                   </span>
                   <div>
@@ -310,7 +310,7 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
                 <button
                   type="button"
                   onClick={handleAutofillSimulatorValues}
-                  className="text-[9px] bg-blue-50 hover:bg-blue-100 text-blue-600 font-bold py-1 px-2.5 border border-blue-100 rounded-lg cursor-pointer transition-all"
+                  className="text-[9px] bg-indigo-50 hover:bg-indigo-100 text-indigo-600 font-bold py-1 px-2.5 border border-indigo-150 rounded-lg cursor-pointer transition-all"
                   title="Copiar del simulador de costos de la derecha"
                 >
                   Autollena con Simulador
@@ -345,7 +345,7 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
                       <input 
                         type="text" required placeholder="Ej: 2019050607"
                         value={newVin} onChange={(e) => setNewVin(e.target.value)}
-                        className="w-full bg-white border border-slate-200 focus:border-blue-500 rounded-lg p-2 font-mono text-slate-800 text-xs outline-none"
+                        className="w-full bg-white border border-slate-200 focus:border-emerald-500 rounded-lg p-2 font-mono text-slate-800 text-xs outline-none"
                       />
                     </div>
 
@@ -354,7 +354,7 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
                       <input 
                         type="text" required placeholder="Ej: Toyota"
                         value={newBrand} onChange={(e) => setNewBrand(e.target.value)}
-                        className="w-full bg-white border border-slate-200 focus:border-blue-500 rounded-lg p-2 font-medium text-slate-800 text-xs outline-none"
+                        className="w-full bg-white border border-slate-200 focus:border-emerald-500 rounded-lg p-2 font-medium text-slate-800 text-xs outline-none"
                       />
                     </div>
                   </div>
@@ -365,7 +365,7 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
                       <input 
                         type="text" required placeholder="Ej: Tacoma Sport"
                         value={newModel} onChange={(e) => setNewModel(e.target.value)}
-                        className="w-full bg-white border border-slate-200 focus:border-blue-500 rounded-lg p-2 font-medium text-slate-800 text-xs outline-none"
+                        className="w-full bg-white border border-slate-200 focus:border-emerald-500 rounded-lg p-2 font-medium text-slate-800 text-xs outline-none"
                       />
                     </div>
 
@@ -374,7 +374,7 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
                       <input 
                         type="number" required min="1990" max={new Date().getFullYear() + 2}
                         value={newYear} onChange={(e) => setNewYear(Number(e.target.value) || 2020)}
-                        className="w-full bg-white border border-slate-200 focus:border-blue-500 rounded-lg p-2 font-mono text-slate-800 text-xs outline-none"
+                        className="w-full bg-white border border-slate-200 focus:border-emerald-500 rounded-lg p-2 font-mono text-slate-800 text-xs outline-none"
                       />
                     </div>
                   </div>
@@ -394,7 +394,7 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
                         <input 
                           type="number" min="0" required
                           value={newAcquistionCost} onChange={(e) => setNewAcquisitionCost(Number(e.target.value) || 0)}
-                          className="w-full bg-white border border-slate-200 focus:border-blue-500 rounded-lg p-2 pl-6 font-mono text-slate-800 text-xs outline-none"
+                          className="w-full bg-white border border-slate-200 focus:border-emerald-500 rounded-lg p-2 pl-6 font-mono text-slate-800 text-xs outline-none"
                         />
                       </div>
                     </div>
@@ -406,7 +406,7 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
                         <input 
                           type="number" min="0" required
                           value={newFreightCost} onChange={(e) => setNewFreightCost(Number(e.target.value) || 0)}
-                          className="w-full bg-white border border-slate-200 focus:border-blue-500 rounded-lg p-2 pl-6 font-mono text-slate-800 text-xs outline-none"
+                          className="w-full bg-white border border-slate-200 focus:border-emerald-500 rounded-lg p-2 pl-6 font-mono text-slate-800 text-xs outline-none"
                         />
                       </div>
                     </div>
@@ -420,7 +420,7 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
                         <input 
                           type="number" min="0" required
                           value={newNationalizationCost} onChange={(e) => setNewNationalizationCost(Number(e.target.value) || 0)}
-                          className="w-full bg-white border border-slate-200 focus:border-blue-500 rounded-lg p-2 pl-6 font-mono text-slate-800 text-xs outline-none"
+                          className="w-full bg-white border border-slate-200 focus:border-emerald-500 rounded-lg p-2 pl-6 font-mono text-slate-800 text-xs outline-none"
                         />
                       </div>
                     </div>
@@ -432,7 +432,7 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
                         <input 
                           type="number" min="0" required
                           value={newBridgeCost} onChange={(e) => setNewBridgeCost(Number(e.target.value) || 0)}
-                          className="w-full bg-white border border-slate-200 focus:border-blue-500 rounded-lg p-2 pl-6 font-mono text-slate-800 text-xs outline-none"
+                          className="w-full bg-white border border-slate-200 focus:border-emerald-500 rounded-lg p-2 pl-6 font-mono text-slate-800 text-xs outline-none"
                         />
                       </div>
                     </div>
@@ -455,7 +455,7 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
                       <label className="text-[9px] text-slate-500 font-bold uppercase">Destino Taller Previsto</label>
                       <select
                         value={newFirstStatus} onChange={(e) => setNewFirstStatus(e.target.value as VehicleStatus)}
-                        className="w-full bg-white border border-slate-200 focus:border-blue-500 rounded-lg p-2 text-slate-700 text-xs outline-none"
+                        className="w-full bg-white border border-slate-200 focus:border-emerald-500 rounded-lg p-2 text-slate-700 text-xs outline-none"
                       >
                         <option value="Hojalateria">Hojalatería (Taller 1)</option>
                         <option value="Mecanica">Mecánica (Taller 2)</option>
@@ -473,14 +473,14 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
                   <textarea 
                     value={newNotes} onChange={(e) => setNewNotes(e.target.value)}
                     placeholder="Ej: Comprado en subasta Copart Houston con golpe menor. Requiere laminado en salpicadera."
-                    className="w-full bg-white border border-slate-200 focus:border-blue-500 rounded-lg p-3 text-slate-700 text-xs outline-none"
+                    className="w-full bg-white border border-slate-200 focus:border-emerald-500 rounded-lg p-3 text-slate-700 text-xs outline-none"
                     rows={2}
                   />
                 </div>
 
                 <button 
                   type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-blue-500/10 transition-colors"
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-emerald-500/10 transition-colors"
                 >
                   <PlusCircle className="w-4 h-4" />
                   <span>Inscribir Expediente de Importación</span>
@@ -497,7 +497,7 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
           {/* SIMULADOR DE COSTEO DE IMPORTACIÓN */}
           <div className="bg-white border border-slate-200 p-5 rounded-2xl shadow-sm space-y-4">
             <div className="flex items-center gap-2 border-b border-slate-100 pb-3">
-              <span className="p-1.5 bg-blue-50 text-blue-600 rounded-lg">
+              <span className="p-1.5 bg-indigo-50 text-indigo-600 rounded-lg">
                 <Calculator className="w-4 h-4" />
               </span>
               <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider">Simulador de Costeo Logístico</h3>
@@ -509,7 +509,7 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
                 <input 
                   type="number" step="0.05"
                   value={exchangeRate} onChange={(e) => setExchangeRate(Number(e.target.value) || 16.8)}
-                  className="w-full bg-white border border-slate-200 focus:border-blue-500 rounded-lg p-2 font-mono text-slate-800 text-xs outline-none"
+                  className="w-full bg-white border border-slate-200 focus:border-emerald-500 rounded-lg p-2 font-mono text-slate-800 text-xs outline-none"
                 />
               </div>
 
@@ -518,7 +518,7 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
                 <input 
                   type="number" 
                   value={usaCost} onChange={(e) => setUsaCost(Number(e.target.value) || 0)}
-                  className="w-full bg-white border border-slate-200 focus:border-blue-500 rounded-lg p-2 font-mono text-slate-800 text-xs outline-none"
+                  className="w-full bg-white border border-slate-200 focus:border-emerald-500 rounded-lg p-2 font-mono text-slate-800 text-xs outline-none"
                 />
               </div>
 
@@ -527,7 +527,7 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
                 <input 
                   type="number"
                   value={fleteEstimate} onChange={(e) => setFleteEstimate(Number(e.target.value) || 0)}
-                  className="w-full bg-white border border-slate-200 focus:border-blue-500 rounded-lg p-2 font-mono text-slate-800 text-xs outline-none"
+                  className="w-full bg-white border border-slate-200 focus:border-emerald-500 rounded-lg p-2 font-mono text-slate-800 text-xs outline-none"
                 />
               </div>
 
@@ -535,7 +535,7 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
                 <label className="text-[9px] text-slate-500 font-bold uppercase">Tratamiento de Aranceles (%)</label>
                 <select
                   value={customsPercent} onChange={(e) => setCustomsPercent(Number(e.target.value))}
-                  className="w-full bg-white border border-slate-200 focus:border-blue-500 rounded-lg p-2 text-slate-700 text-xs outline-none font-medium"
+                  className="w-full bg-white border border-slate-200 focus:border-emerald-500 rounded-lg p-2 text-slate-700 text-xs outline-none font-medium text-slate-800"
                 >
                   <option value={10}>10% - Cruce Fronterizo (Pedimento L-1)</option>
                   <option value={15}>15% - Internación Nacional Completa</option>
@@ -554,7 +554,7 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
                 <span>Total Estimado (USD):</span>
                 <span className="text-slate-800 font-bold">${totalUSD.toLocaleString()} USD</span>
               </div>
-              <div className="border-t border-slate-200 pt-2 flex justify-between font-bold text-blue-600 text-[11px]">
+              <div className="border-t border-slate-200 pt-2 flex justify-between font-bold text-indigo-650 text-[11px]">
                 <span>Costo de Entrada en Pesos:</span>
                 <span>${Math.round(totalMXN).toLocaleString('es-MX')} MXN</span>
               </div>
@@ -660,7 +660,7 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
           <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
             <div className="flex justify-between items-center border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2">
-                <span className="p-1.5 bg-blue-50 text-blue-600 rounded-lg">
+                <span className="p-1.5 bg-indigo-50 text-indigo-600 rounded-lg">
                   <FileText className="w-4 h-4" />
                 </span>
                 <h3 className="text-xs font-bold text-slate-850 uppercase tracking-wider">Carpeta de Unidades del Concesionario</h3>
@@ -681,7 +681,7 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
                     <th className="py-2.5 px-2 text-right">Flete USD</th>
                     <th className="py-2.5 px-2 text-right font-mono">Arancel</th>
                     <th className="py-2.5 px-2 text-right font-mono">Cruce</th>
-                    <th className="py-2.5 px-2 text-right text-blue-600 font-bold">Total USD</th>
+                    <th className="py-2.5 px-2 text-right text-indigo-650 font-bold">Total USD</th>
                     <th className="py-2.5 px-2 text-center text-slate-500 font-sans">Estado</th>
                     {isCompradorOrAdmin && <th className="py-2.5 px-2 text-center">Acción</th>}
                   </tr>
@@ -693,7 +693,7 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
 
                     return (
                       <tr key={v.id} className={`hover:bg-slate-50/50 transition-colors ${isTransit ? 'bg-amber-50/15' : ''}`}>
-                        <td className="py-2.5 px-2 font-mono text-blue-600 font-semibold">{v.vin}</td>
+                        <td className="py-2.5 px-2 font-mono text-indigo-600 font-semibold">{v.vin}</td>
                         <td className="py-2.5 px-2 font-medium text-slate-800">
                           <span className="block leading-tight font-sans font-bold">{v.year} {v.brand} {v.model}</span>
                           {isTransit && (
@@ -706,12 +706,12 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
                         <td className="py-2.5 px-2 text-right font-mono text-slate-700">${v.freightCost.toLocaleString()}</td>
                         <td className="py-2.5 px-2 text-right font-mono text-slate-700">${v.nationalizationCost.toLocaleString()}</td>
                         <td className="py-2.5 px-2 text-right font-mono text-slate-700">${v.otherExpenses.toLocaleString()}</td>
-                        <td className="py-2.5 px-2 text-right font-mono text-blue-600 font-extrabold">${usdTotal.toLocaleString()}</td>
+                        <td className="py-2.5 px-2 text-right font-mono text-indigo-650 font-extrabold">${usdTotal.toLocaleString()}</td>
                         
                         <td className="py-2.5 px-2 text-center">
                           <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold ${
                             v.status === 'Vendido' ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' :
-                            v.status === 'Listo para Venta' ? 'bg-blue-50 text-blue-600 border border-blue-100' :
+                            v.status === 'Listo para Venta' ? 'bg-indigo-50 text-indigo-600 border border-indigo-100' :
                             'bg-violet-50 text-violet-600 border border-violet-100'
                           }`}>
                             {v.status}
@@ -736,8 +736,8 @@ export default function ImportsManager({ vehicles, onUpdateVehicle, onAddVehicle
               </table>
             </div>
 
-            <div className="bg-blue-50/40 p-3 rounded-xl border border-blue-100/50 flex items-start gap-2.5 text-[10px] text-slate-600 leading-relaxed">
-              <Info className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
+            <div className="bg-[#F4F4F5] p-3 rounded-xl border border-zinc-200 flex items-start gap-2.5 text-[10px] text-slate-600 leading-relaxed">
+              <Info className="w-5 h-5 text-zinc-500 shrink-0 mt-0.5" />
               <span>
                 <strong>Aviso Copart/Adsubasta:</strong> El comprador tiene la obligación legal de registrar todos los impuestos de importación de forma pormenorizada por número de serie (VIN) antes de dar entrada del vehículo a los talleres de reparación o estética en la parte superior.
               </span>

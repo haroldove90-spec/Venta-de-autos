@@ -86,9 +86,9 @@ export default function InventoryManager({
     switch (status) {
       case 'Hojalateria': return 'bg-amber-500/10 text-amber-400 border border-amber-500/20';
       case 'Mecanica': return 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20';
-      case 'Clima': return 'bg-blue-500/10 text-blue-400 border border-blue-500/20';
+      case 'Clima': return 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20';
       case 'Estetica': return 'bg-purple-500/10 text-purple-400 border border-purple-500/20';
-      case 'Listo para Venta': return 'bg-blue-600/10 text-blue-400 border border-blue-500/20';
+      case 'Listo para Venta': return 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20';
       case 'Vendido': return 'bg-emerald-600/20 text-emerald-300 border border-emerald-500/35 font-bold';
     }
   };
@@ -107,7 +107,7 @@ export default function InventoryManager({
         {(role === 'Administrador' || role === 'Comprador') && (
           <button
             onClick={() => setShowAddForm(!showAddForm)}
-            className="bg-blue-600 hover:bg-blue-500 text-white font-sans font-semibold text-xs py-2 px-4 rounded-xl flex items-center gap-1.5 cursor-pointer shadow-lg shadow-blue-600/15"
+            className="bg-emerald-600 hover:bg-emerald-500 text-white font-sans font-semibold text-xs py-2 px-4 rounded-xl flex items-center gap-1.5 cursor-pointer shadow-lg shadow-emerald-500/15"
             id="register-vehicle-btn"
           >
             <Plus className="w-4 h-4" />
@@ -138,7 +138,7 @@ export default function InventoryManager({
                   <input 
                     type="text" required placeholder="Toyota, Ford, Nissan"
                     value={brand} onChange={(e) => setBrand(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2 text-xs text-white outline-none"
+                    className="w-full bg-slate-950 border border-slate-800 focus:border-emerald-500 rounded-lg p-2 text-xs text-white outline-none"
                   />
                 </div>
 
@@ -148,7 +148,7 @@ export default function InventoryManager({
                   <input 
                     type="text" required placeholder="Tacoma Sport, F-150 Lariat"
                     value={model} onChange={(e) => setModel(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2 text-xs text-white outline-none"
+                    className="w-full bg-slate-950 border border-slate-800 focus:border-emerald-500 rounded-lg p-2 text-xs text-white outline-none"
                   />
                 </div>
 
@@ -158,7 +158,7 @@ export default function InventoryManager({
                   <input 
                     type="number" required placeholder="2018"
                     value={year} onChange={(e) => setYear(Number(e.target.value))}
-                    className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2 text-xs text-white outline-none"
+                    className="w-full bg-slate-950 border border-slate-800 focus:border-emerald-500 rounded-lg p-2 text-xs text-white outline-none"
                   />
                 </div>
 
@@ -168,7 +168,7 @@ export default function InventoryManager({
                   <input 
                     type="text" required placeholder="17-digitos o código de lote"
                     value={vin} onChange={(e) => setVin(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2 text-xs font-mono text-white outline-none"
+                    className="w-full bg-slate-950 border border-slate-800 focus:border-emerald-500 rounded-lg p-2 text-xs font-mono text-white outline-none"
                   />
                 </div>
 
@@ -182,7 +182,7 @@ export default function InventoryManager({
                   <input 
                     type="number" required placeholder="12000"
                     value={acquisitionCost} onChange={(e) => setAcquisitionCost(Number(e.target.value))}
-                    className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2 text-xs font-mono text-white outline-none"
+                    className="w-full bg-slate-950 border border-slate-800 focus:border-emerald-500 rounded-lg p-2 text-xs font-mono text-white outline-none"
                   />
                 </div>
 
@@ -192,7 +192,7 @@ export default function InventoryManager({
                   <input 
                     type="number" required placeholder="1100"
                     value={freightCost} onChange={(e) => setFreightCost(Number(e.target.value))}
-                    className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2 text-xs font-mono text-white outline-none"
+                    className="w-full bg-slate-950 border border-slate-800 focus:border-emerald-500 rounded-lg p-2 text-xs font-mono text-white outline-none"
                   />
                 </div>
 
@@ -202,7 +202,7 @@ export default function InventoryManager({
                   <input 
                     type="number" required placeholder="1800"
                     value={nationalizationCost} onChange={(e) => setNationalizationCost(Number(e.target.value))}
-                    className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2 text-xs font-mono text-white outline-none"
+                    className="w-full bg-slate-950 border border-slate-800 focus:border-emerald-500 rounded-lg p-2 text-xs font-mono text-white outline-none"
                   />
                 </div>
 
@@ -212,7 +212,7 @@ export default function InventoryManager({
                   <input 
                     type="number" required placeholder="200"
                     value={otherExpenses} onChange={(e) => setOtherExpenses(Number(e.target.value))}
-                    className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2 text-xs font-mono text-white outline-none"
+                    className="w-full bg-slate-950 border border-slate-800 focus:border-emerald-500 rounded-lg p-2 text-xs font-mono text-white outline-none"
                   />
                 </div>
 
@@ -234,7 +234,7 @@ export default function InventoryManager({
                 <textarea
                   placeholder="Detallar condiciones mecánicas de compra, origen, etc."
                   value={notes} onChange={(e) => setNotes(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2 text-xs text-white outline-none h-14"
+                  className="w-full bg-slate-950 border border-slate-800 focus:border-emerald-500 rounded-lg p-2 text-xs text-white outline-none h-14"
                 />
               </div>
 
@@ -242,7 +242,7 @@ export default function InventoryManager({
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-slate-950 p-3 rounded-lg border border-slate-850 gap-2 font-mono text-[10px] text-slate-400">
                 <div className="flex items-center gap-4">
                   <span>Inversión de Importación ($USD): <span className="text-white font-bold">${(acquisitionCost + freightCost + nationalizationCost + otherExpenses).toLocaleString()}</span></span>
-                  <span>En Pesos (~M): <span className="text-blue-400 font-bold">${((acquisitionCost + freightCost + nationalizationCost + otherExpenses) * 16).toLocaleString('es-MX')} MXN</span></span>
+                  <span>En Pesos (~M): <span className="text-purple-400 font-bold">${((acquisitionCost + freightCost + nationalizationCost + otherExpenses) * 16).toLocaleString('es-MX')} MXN</span></span>
                 </div>
                 <div className="text-emerald-400 font-semibold">
                   Márgen Utilidad Bruto proyectado: +${Math.max(0, (salePrice - (acquisitionCost + freightCost + nationalizationCost + otherExpenses)) * 16).toLocaleString()} MXN
@@ -277,7 +277,7 @@ export default function InventoryManager({
             placeholder="Buscar por marca, modelo, VIN o palabras clave..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-xl py-2 pl-9 pr-3 text-xs text-slate-300 outline-none transition-all"
+            className="w-full bg-slate-950 border border-slate-800 focus:border-emerald-500 rounded-xl py-2 pl-9 pr-3 text-xs text-slate-300 outline-none transition-all"
           />
         </div>
 
@@ -346,7 +346,7 @@ export default function InventoryManager({
                   </div>
                   <div className="flex justify-between">
                     <span className="text-slate-500">Costo Base MXN (~16x):</span>
-                    <span className="font-mono text-blue-400 font-semibold">${(totalImportationBasis * 16).toLocaleString('es-MX')}</span>
+                    <span className="font-mono text-purple-400 font-semibold">${(totalImportationBasis * 16).toLocaleString('es-MX')}</span>
                   </div>
                   <div className="flex justify-between font-bold pt-1.5 border-t border-slate-850/50">
                     <span className="text-emerald-400">Importe Venta Sugg:</span>
@@ -376,7 +376,7 @@ export default function InventoryManager({
                   {vehicle.status === 'Listo para Venta' ? (
                     <button
                       onClick={() => onOpenPayment(vehicle)}
-                      className="bg-blue-600 hover:bg-blue-500 text-white font-bold p-2.5 rounded-lg flex items-center justify-center gap-1.5 transition-colors cursor-pointer shrink-0"
+                      className="bg-[#6366F1] hover:bg-indigo-500 text-white font-bold p-2.5 rounded-lg flex items-center justify-center gap-1.5 transition-colors cursor-pointer shrink-0"
                       title="Procesar pago"
                     >
                       <DollarSign className="w-3.5 h-3.5" />

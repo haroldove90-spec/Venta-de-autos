@@ -40,10 +40,10 @@ export default function Login({ onLogin }: LoginProps) {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-4 relative overflow-hidden" id="login-container">
+    <div className="min-h-screen bg-zinc-50 flex flex-col items-center justify-center p-4 relative overflow-hidden" id="login-container">
       {/* Background decorations matching sleek dealership aesthetic */}
-      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[60%] rounded-full bg-emerald-900/10 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[60%] rounded-full bg-violet-900/10 blur-[120px] pointer-events-none" />
+      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[60%] rounded-full bg-emerald-100/40 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[60%] rounded-full bg-violet-100/40 blur-[120px] pointer-events-none" />
       
       {/* Brand Header */}
       <motion.div 
@@ -52,15 +52,15 @@ export default function Login({ onLogin }: LoginProps) {
         className="flex flex-col items-center mb-8 text-center"
         id="login-brand"
       >
-        <div className="flex items-center gap-3 bg-slate-900 border border-slate-800 px-5 py-3 rounded-2xl shadow-xl shadow-slate-950/50 mb-3 hover:border-emerald-500/30 transition-all">
-          <div className="p-2 bg-emerald-600/10 text-emerald-400 rounded-lg">
+        <div className="flex items-center gap-3 bg-white border border-zinc-250 px-5 py-3 rounded-2xl shadow-md mb-3 hover:border-emerald-500/30 transition-all">
+          <div className="p-2 bg-emerald-600/10 text-emerald-600 rounded-lg">
             <Car className="w-7 h-7" id="logo-car" />
           </div>
-          <span className="font-sans font-bold tracking-wider text-xl text-white">
-            AUTO-GESTOR <span className="text-emerald-500 font-extrabold text-xs align-super bg-emerald-500/10 py-0.5 px-1.5 rounded ml-1">PRO</span>
+          <span className="font-sans font-bold tracking-wider text-xl text-zinc-900">
+            AUTO-GESTOR <span className="text-emerald-600 font-extrabold text-xs align-super bg-emerald-555/10 py-0.5 px-1.5 rounded ml-1">PRO</span>
           </span>
         </div>
-        <p className="text-slate-400 text-sm max-w-md">
+        <p className="text-zinc-550 text-sm max-w-md">
           Sistema modular premium de gestión de lote de autos, logística, taller, estética y utilidades en tiempo real.
         </p>
       </motion.div>
@@ -70,11 +70,11 @@ export default function Login({ onLogin }: LoginProps) {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.1 }}
-        className="w-full max-w-4xl bg-slate-900/80 backdrop-blur-md border border-slate-800 rounded-3xl p-6 md:p-8 shadow-2xl shadow-black/80"
+        className="w-full max-w-4xl bg-white border border-zinc-200 rounded-3xl p-6 md:p-8 shadow-xl shadow-zinc-205/35"
         id="login-auth-card"
       >
-        <h2 className="text-lg font-semibold text-white mb-1">Selecciona tu Rol Operativo</h2>
-        <p className="text-slate-400 text-xs mb-6">Elige el perfil con el que deseas ingresar para interactuar con la consola y realizar operaciones en tiempo real.</p>
+        <h2 className="text-lg font-semibold text-zinc-800 mb-1">Selecciona tu Rol Operativo</h2>
+        <p className="text-zinc-500 text-xs mb-6">Elige el perfil con el que deseas ingresar para interactuar con la consola y realizar operaciones en tiempo real.</p>
         
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4" id="role-grid">
@@ -90,8 +90,8 @@ export default function Login({ onLogin }: LoginProps) {
                   }}
                   className={`relative flex flex-col text-left p-4 rounded-2xl border transition-all duration-300 group overflow-hidden h-full ${
                     isSelected 
-                      ? 'bg-slate-800/80 border-emerald-500 ring-2 ring-emerald-500/20 shadow-lg shadow-emerald-500/5' 
-                      : 'bg-slate-900/50 border-slate-800/80 hover:border-slate-700/80 hover:bg-slate-800/40'
+                      ? 'bg-zinc-150 border-emerald-600 ring-2 ring-emerald-500/15 shadow-md scale-[1.01]' 
+                      : 'bg-zinc-50 border-zinc-200 hover:border-zinc-300 hover:bg-zinc-100'
                   }`}
                   id={`role-btn-${role.id}`}
                 >
@@ -99,7 +99,7 @@ export default function Login({ onLogin }: LoginProps) {
                   <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${role.color} opacity-80`} />
                   
                   <div className="flex items-center justify-between mt-1 mb-3">
-                    <div className="p-2 bg-slate-950/60 rounded-xl border border-slate-800/60 group-hover:border-slate-700">
+                    <div className="p-2 bg-white rounded-xl border border-zinc-200 shadow-sm">
                       {getRoleIcon(role.id)}
                     </div>
                     {isSelected && (
@@ -107,14 +107,14 @@ export default function Login({ onLogin }: LoginProps) {
                     )}
                   </div>
                   
-                  <h3 className="font-sans font-semibold text-sm text-white group-hover:text-emerald-400 transition-colors">
+                  <h3 className="font-sans font-semibold text-xs text-zinc-800 group-hover:text-emerald-700 transition-colors">
                     {role.title}
                   </h3>
-                  <span className="text-[10px] text-slate-500 font-medium tracking-tight mt-0.5 uppercase">
+                  <span className="text-[9px] text-zinc-400 font-medium tracking-tight mt-0.5 uppercase">
                     {role.subtitle}
                   </span>
                   
-                  <p className="text-[11px] text-slate-400 mt-2 leading-relaxed flex-grow">
+                  <p className="text-[10px] text-zinc-500 mt-2 leading-relaxed flex-grow">
                     {role.description}
                   </p>
                 </button>
@@ -126,11 +126,11 @@ export default function Login({ onLogin }: LoginProps) {
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-slate-950/60 border border-slate-800/60 p-4 rounded-2xl max-w-2xl mx-auto flex flex-col md:flex-row items-center gap-4 justify-between"
+              className="bg-zinc-50 border border-zinc-200 p-4 rounded-2xl max-w-2xl mx-auto flex flex-col md:flex-row items-center gap-4 justify-between"
               id="name-input-container"
             >
               <div className="w-full md:w-auto flex-grow max-w-md">
-                <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
+                <label className="block text-[11px] font-semibold text-zinc-500 uppercase tracking-wider mb-1.5">
                   Nombre del Operador (Opcional)
                 </label>
                 <input
@@ -138,7 +138,7 @@ export default function Login({ onLogin }: LoginProps) {
                   value={customName}
                   onChange={(e) => setCustomName(e.target.value)}
                   placeholder={getDefaultName(selectedRole)}
-                  className="w-full bg-slate-900 border border-slate-800 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-sm text-white rounded-xl py-2 px-3 outline-none transition-all placeholder:text-slate-600 font-sans"
+                  className="w-full bg-white border border-zinc-250 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-sm text-zinc-800 rounded-xl py-2 px-3 outline-none transition-all placeholder:text-zinc-400 font-sans shadow-sm"
                   id="operator-name-input"
                 />
               </div>
@@ -157,7 +157,7 @@ export default function Login({ onLogin }: LoginProps) {
       </motion.div>
 
       {/* Footer Info */}
-      <div className="absolute bottom-4 text-center text-[10px] text-slate-600" id="login-footer">
+      <div className="absolute bottom-4 text-center text-[10px] text-zinc-500" id="login-footer">
         AUTO-GESTOR PRO v2.1 • Diseñado para alto rendimiento y control financiero exacto.
       </div>
     </div>

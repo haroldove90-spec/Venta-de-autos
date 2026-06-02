@@ -111,7 +111,7 @@ export default function PaymentGateway({ vehicle, expenses, onClose, onPaymentSu
           
           {/* Header */}
           <div className="flex items-center gap-2 mb-6">
-            <div className="p-2 bg-blue-600/10 text-blue-400 rounded-xl">
+            <div className="p-2 bg-emerald-600/10 text-emerald-450 rounded-xl">
               <CreditCard className="w-5 h-5" />
             </div>
             <div>
@@ -128,7 +128,7 @@ export default function PaymentGateway({ vehicle, expenses, onClose, onPaymentSu
                 <div className="bg-slate-950 border border-slate-800 p-5 rounded-2xl space-y-4">
                   <div className="flex justify-between items-start gap-4 border-b border-slate-900 pb-3">
                     <div>
-                      <span className="text-[8px] bg-blue-500/10 text-blue-400 py-0.5 px-2 rounded-full font-mono font-bold uppercase">
+                      <span className="text-[8px] bg-indigo-500/10 text-indigo-400 py-0.5 px-2 rounded-full font-mono font-bold uppercase">
                         Unidad lista para exhibición
                       </span>
                       <h3 className="text-xs font-bold text-white mt-1">{vehicle.year} {vehicle.brand} {vehicle.model}</h3>
@@ -154,9 +154,9 @@ export default function PaymentGateway({ vehicle, expenses, onClose, onPaymentSu
                       <span className="text-[9px] text-slate-500 block mt-0.5">Bitácora de refacciones</span>
                     </div>
 
-                    <div className="bg-blue-950/20 p-2.5 rounded-lg border border-blue-900/30">
-                      <span className="text-[9px] text-blue-400 block uppercase font-sans font-bold">Costo Real Total</span>
-                      <span className="text-xs font-black text-blue-300">${totalRealCostMXN.toLocaleString('es-MX', { maximumFractionDigits: 0 })} MXN</span>
+                    <div className="bg-indigo-500/10 p-2.5 rounded-lg border border-indigo-500/25">
+                      <span className="text-[9px] text-indigo-400 block uppercase font-sans font-bold">Costo Real Total</span>
+                      <span className="text-xs font-black text-indigo-300">${totalRealCostMXN.toLocaleString('es-MX', { maximumFractionDigits: 0 })} MXN</span>
                       <span className="text-[9px] text-slate-500 block mt-0.5">Suma física consolidada</span>
                     </div>
                   </div>
@@ -202,7 +202,7 @@ export default function PaymentGateway({ vehicle, expenses, onClose, onPaymentSu
                     onClick={() => setPaymentMethod('card')}
                     className={`flex items-center justify-center gap-2 p-3.5 rounded-xl border text-xs font-semibold cursor-pointer transition-all ${
                       paymentMethod === 'card' 
-                        ? 'bg-blue-600/10 text-blue-400 border-blue-500 shadow-md' 
+                        ? 'bg-emerald-600/10 text-emerald-450 border-emerald-500 shadow-md' 
                         : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
                     }`}
                   >
@@ -215,7 +215,7 @@ export default function PaymentGateway({ vehicle, expenses, onClose, onPaymentSu
                     onClick={() => setPaymentMethod('spei')}
                     className={`flex items-center justify-center gap-2 p-3.5 rounded-xl border text-xs font-semibold cursor-pointer transition-all ${
                       paymentMethod === 'spei' 
-                        ? 'bg-blue-600/10 text-blue-400 border-blue-500 shadow-md' 
+                        ? 'bg-emerald-600/10 text-emerald-450 border-emerald-500 shadow-md' 
                         : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
                     }`}
                   >
@@ -240,7 +240,7 @@ export default function PaymentGateway({ vehicle, expenses, onClose, onPaymentSu
                             placeholder="4000 1234 5678 9010"
                             value={cardNumber}
                             onChange={handleCardNumberChange}
-                            className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-xl py-2.5 pl-10 pr-3 text-xs font-mono text-white outline-none"
+                            className="w-full bg-slate-950 border border-slate-800 focus:border-emerald-500 rounded-xl py-2.5 pl-10 pr-3 text-xs font-mono text-white outline-none"
                           />
                         </div>
                       </div>
@@ -256,7 +256,7 @@ export default function PaymentGateway({ vehicle, expenses, onClose, onPaymentSu
                               placeholder="Juan Pérez Domínguez"
                               value={cardName}
                               onChange={(e) => setCardName(e.target.value)}
-                              className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-xl py-2.5 pl-10 pr-3 text-xs text-white outline-none"
+                              className="w-full bg-slate-950 border border-slate-800 focus:border-emerald-500 rounded-xl py-2.5 pl-10 pr-3 text-xs text-white outline-none"
                             />
                           </div>
                         </div>
@@ -271,7 +271,7 @@ export default function PaymentGateway({ vehicle, expenses, onClose, onPaymentSu
                               placeholder="12/29"
                               value={cardExpiry}
                               onChange={handleExpiryChange}
-                              className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-xl py-2.5 pl-8 pr-2 text-xs font-mono text-white text-center outline-none"
+                              className="w-full bg-slate-950 border border-slate-800 focus:border-emerald-500 rounded-xl py-2.5 pl-8 pr-2 text-xs font-mono text-white text-center outline-none"
                             />
                           </div>
                         </div>
@@ -288,7 +288,7 @@ export default function PaymentGateway({ vehicle, expenses, onClose, onPaymentSu
                               placeholder="•••"
                               value={cardCvv}
                               onChange={handleCvvChange}
-                              className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-xl py-2.5 pl-8 pr-2 text-xs font-mono text-white text-center outline-none select-all"
+                              className="w-full bg-slate-950 border border-slate-800 focus:border-emerald-500 rounded-xl py-2.5 pl-8 pr-2 text-xs font-mono text-white text-center outline-none select-all"
                             />
                           </div>
                         </div>
@@ -303,7 +303,7 @@ export default function PaymentGateway({ vehicle, expenses, onClose, onPaymentSu
                   ) : (
                     <div className="bg-slate-950 border border-slate-800 p-5 rounded-2xl space-y-4" id="spei-form">
                       <div className="flex items-center gap-3 border-b border-slate-900 pb-3">
-                        <div className="p-2 bg-blue-500/10 text-blue-400 rounded-xl">
+                        <div className="p-2 bg-emerald-500/10 text-emerald-450 rounded-xl">
                           <Building className="w-5 h-5" />
                         </div>
                         <div>
@@ -329,7 +329,7 @@ export default function PaymentGateway({ vehicle, expenses, onClose, onPaymentSu
                     <button
                       type="submit"
                       disabled={processing}
-                      className="w-full bg-blue-600 hover:bg-blue-500 text-white py-3.5 rounded-xl font-sans font-bold text-xs flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-blue-500/15 disabled:opacity-50 transition-all font-sans"
+                      className="w-full bg-emerald-600 hover:bg-emerald-500 text-white py-3.5 rounded-xl font-sans font-bold text-xs flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-emerald-500/15 disabled:opacity-50 transition-all font-sans"
                     >
                       {processing ? (
                         <>
@@ -372,7 +372,7 @@ export default function PaymentGateway({ vehicle, expenses, onClose, onPaymentSu
                 {/* Printable receipt ticket mock */}
                 <div className="bg-slate-950 border border-slate-850 p-5 rounded-2xl w-full max-w-sm my-6 text-left space-y-3 font-mono text-[10px] text-slate-400">
                   <div className="text-center font-bold text-white border-b border-dashed border-slate-800 pb-2 flex flex-col items-center">
-                    <Receipt className="w-5 h-5 text-blue-400 mb-1" />
+                    <Receipt className="w-5 h-5 text-emerald-450 mb-1" />
                     <span>AUTO-GESTOR PRO S.A.</span>
                     <span className="text-[8px] text-slate-500">MONTERREY, N.L. • RFC: AGP190580AA1</span>
                   </div>
@@ -397,7 +397,7 @@ export default function PaymentGateway({ vehicle, expenses, onClose, onPaymentSu
                     <span className="text-white">${totalRealCostMXN.toLocaleString('es-MX')} MXN</span>
                   </div>
 
-                  <div className="flex justify-between border-t border-slate-900 pt-2 font-extrabold text-blue-400">
+                  <div className="flex justify-between border-t border-slate-900 pt-2 font-extrabold text-emerald-450">
                     <span>Precio Salida Final:</span>
                     <span>${(negotiatedPrice * 15 * 10).toLocaleString('es-MX')} MXN</span>
                   </div>
@@ -417,7 +417,7 @@ export default function PaymentGateway({ vehicle, expenses, onClose, onPaymentSu
                   onClick={handleFinish}
                   className="w-full max-w-xs bg-slate-800 hover:bg-slate-700 hover:text-white text-slate-300 py-3 rounded-xl border border-slate-700 font-sans font-bold text-xs flex items-center justify-center gap-1.5 cursor-pointer transition-colors"
                 >
-                  <Sparkles className="w-3.5 h-3.5 text-blue-400" />
+                  <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
                   Actualizar Inventario y Salir
                 </button>
 

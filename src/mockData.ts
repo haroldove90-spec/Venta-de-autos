@@ -14,7 +14,7 @@ export const ROLES: RoleConfig[] = [
     title: 'Comprador y Logística',
     subtitle: 'Gestor de Importaciones y Cruces',
     description: 'Inscribe nuevos autos adquiridos en subastas extranjeras, calcula el flete, impuestos de nacionalización o cruce, y estima costos reales de adquisición.',
-    color: 'from-blue-500 to-indigo-600',
+    color: 'from-violet-550 to-indigo-600',
     permissions: ['Crear nuevos vehículos', 'Ver módulo de importaciones', 'Editar fletes y nacionalizaciones', 'Calcular costos de cruce']
   },
   {
