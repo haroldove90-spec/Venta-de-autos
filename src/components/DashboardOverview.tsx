@@ -69,11 +69,11 @@ export default function DashboardOverview({
   // Stage badges lookup
   const getStageLabel = (status: VehicleStatus) => {
     switch (status) {
-      case 'Hojalateria': return 'Hojalatería (Taller 1)';
-      case 'Mecanica': return 'Mecánica (Taller 2)';
-      case 'Clima': return 'Clima (Taller 3)';
-      case 'Estetica': return 'Estética y Detalle';
-      case 'Listo para Venta': return 'Listo para Venta (Stock)';
+      case 'Hojalateria': return 'En Taller de Hojalatería';
+      case 'Mecanica': return 'En Taller de Mecánica / Suspensión';
+      case 'Clima': return 'En Taller de Clima';
+      case 'Estetica': return 'Estética / Detallado';
+      case 'Listo para Venta': return 'Listo / Completo (Stock)';
       default: return status;
     }
   };
@@ -120,17 +120,19 @@ export default function DashboardOverview({
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4" id="kpi-cards-grid">
         
         {/* Card 1: Utilidad Neta Mensual */}
-        {isComprador ? (
-          <div className="bg-white border border-slate-200/80 p-5 rounded-2xl flex flex-col justify-between h-36 relative overflow-hidden bg-slate-50/20">
+        {(isComprador || isTaller || isEstetica) ? (
+          <div className="bg-white border border-slate-200/80 p-5 rounded-2xl flex flex-col justify-between h-36 relative overflow-hidden bg-slate-50/20 shadow-sm">
             <div className="flex items-center justify-between">
               <span className="text-[11px] font-sans text-slate-400 font-bold uppercase tracking-wider">Utilidad Neta Mensual</span>
-              <Lock className="w-4 h-4 text-slate-300" />
+              <Lock className="w-4 h-4 text-slate-350" />
             </div>
             <div className="mt-2 space-y-1">
-              <div className="text-xs font-bold text-slate-350 tracking-wider flex items-center gap-1">
+              <div className="text-xs font-bold text-slate-400 tracking-wider flex items-center gap-1">
                 <span>[RESTRINGIDO]</span>
               </div>
-              <span className="text-[10px] text-slate-400 font-medium block leading-tight">Solo visible para Administración / Contabilidad</span>
+              <span className="text-[10px] text-slate-400 font-medium block leading-tight">
+                El perfil {role} tiene bloqueado el acceso a métricas de utilidades.
+              </span>
             </div>
             <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-100" />
           </div>
@@ -212,17 +214,19 @@ export default function DashboardOverview({
         </div>
 
         {/* Card 4: Costo Real Total (Mes) */}
-        {isComprador ? (
-          <div className="bg-white border border-slate-200/80 p-5 rounded-2xl flex flex-col justify-between h-36 relative overflow-hidden bg-slate-50/20">
+        {(isComprador || isTaller || isEstetica) ? (
+          <div className="bg-white border border-slate-200/80 p-5 rounded-2xl flex flex-col justify-between h-36 relative overflow-hidden bg-slate-50/20 shadow-sm">
             <div className="flex items-center justify-between">
               <span className="text-[11px] font-sans text-slate-400 font-bold uppercase tracking-wider">Costo Real Total (Mes)</span>
-              <Lock className="w-4 h-4 text-slate-300" />
+              <Lock className="w-4 h-4 text-slate-350" />
             </div>
             <div className="mt-2 space-y-1">
-              <div className="text-xs font-bold text-slate-350 tracking-wider flex items-center gap-1">
+              <div className="text-xs font-bold text-slate-400 tracking-wider flex items-center gap-1">
                 <span>[RESTRINGIDO]</span>
               </div>
-              <span className="text-[10px] text-slate-400 font-medium block leading-tight">Solo visible para Administración / Contabilidad</span>
+              <span className="text-[10px] text-slate-400 font-medium block leading-tight">
+                El perfil {role} tiene bloqueado el acceso a costos integrales.
+              </span>
             </div>
             <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-100" />
           </div>
@@ -290,9 +294,9 @@ export default function DashboardOverview({
         </div>
 
         {/* Kanban columns */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4" id="kanban-columns-grid">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4" id="kanban-columns-grid">
           
-          {(['Hojalateria', 'Mecanica', 'Clima', 'Estetica'] as const).map((columnKey) => {
+          {(['Hojalateria', 'Mecanica', 'Clima', 'Estetica', 'Listo para Venta'] as const).map((columnKey) => {
             const columnVehicles = vehicles.filter(v => v.status === columnKey && v.isActivatedInPipeline !== false);
             const columnFilteredVehicles = activeKanbanFilter === 'mine' 
               ? columnVehicles.filter(v => {
@@ -304,17 +308,26 @@ export default function DashboardOverview({
               : columnVehicles;
 
             return (
-              <div key={columnKey} className="bg-[#f8fafc] rounded-2xl p-4.5 border border-slate-200/50 flex flex-col min-h-[300px]" id={`kanban-col-${columnKey}`}>
+              <div key={columnKey} className="bg-[#f8fafc] rounded-2xl p-3 border border-slate-200/60 flex flex-col min-h-[300px]" id={`kanban-col-${columnKey}`}>
                 
                 {/* Column header */}
-                <div className="flex items-center justify-between mb-4 pb-2.5 border-b border-slate-200/60">
-                  <div className="flex flex-col">
-                    <span className="text-xs font-black text-slate-800 font-sans">{getStageLabel(columnKey)}</span>
-                    <span className="text-[9px] text-slate-400 font-mono mt-0.5 font-bold uppercase">
+                <div className="flex flex-col mb-4 pb-2.5 border-b border-slate-200/60 relative">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-black text-slate-850 font-sans tracking-tight">{getStageLabel(columnKey)}</span>
+                    <span className="w-2 h-2 rounded-full bg-blue-600 shadow" />
+                  </div>
+                  <div className="flex items-center justify-between mt-1">
+                    <span className="text-[10px] text-slate-400 font-mono font-bold uppercase">
                       {columnFilteredVehicles.length} {columnFilteredVehicles.length === 1 ? 'Vehículo' : 'Vehículos'}
                     </span>
+                    
+                    {columnFilteredVehicles.length >= 2 && (columnKey === 'Hojalateria' || columnKey === 'Mecanica' || columnKey === 'Clima') && (
+                      <span className="text-[8px] bg-rose-50 text-rose-600 border border-rose-100 font-sans font-black tracking-tight px-1.5 py-0.5 rounded uppercase animate-pulse flex items-center gap-0.5" title="Cuello de Botella Detectado">
+                        <span className="w-1.5 h-1.5 rounded-full bg-rose-500 shrink-0" />
+                        Cuello Botella
+                      </span>
+                    )}
                   </div>
-                  <span className="w-2 h-2 rounded-full bg-blue-600 shadow" />
                 </div>
 
                 {/* Cards stack */}
@@ -333,14 +346,14 @@ export default function DashboardOverview({
                         <motion.div
                           key={vehicle.id}
                           layoutId={vehicle.id}
-                          className="bg-white border border-slate-200 hover:border-blue-300 hover:shadow-md rounded-2xl p-3.5 shadow-sm group transition-all"
+                          className="bg-white border border-slate-200 hover:border-blue-300 hover:shadow-md rounded-2xl p-3 shadow-sm group transition-all"
                           id={`vehicle-card-${vehicle.id}`}
                         >
                           <div className="flex items-center justify-between gap-1.5">
-                            <span className="text-[11.5px] font-bold text-slate-800 truncate tracking-tight uppercase">
+                            <span className="text-[11px] font-extrabold text-slate-800 truncate tracking-tight uppercase">
                               {vehicle.brand} {vehicle.model}
                             </span>
-                            <span className="text-[9px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded-md font-mono font-bold">
+                            <span className="text-[9px] bg-slate-100 text-slate-600 px-1 py-0.5 rounded font-mono font-bold">
                               {vehicle.vin.slice(-5)}
                             </span>
                           </div>
@@ -374,20 +387,20 @@ export default function DashboardOverview({
                                   <ArrowLeft className="w-3.5 h-3.5" />
                                 </button>
                                 
-                                <span className="text-[9px] font-sans font-bold text-slate-500 uppercase bg-slate-50 px-2 py-0.5 rounded border border-slate-200/60">
-                                  {vehicle.status}
+                                <span className="text-[9px] font-sans font-bold text-slate-550 uppercase bg-slate-50 px-1.5 py-0.5 rounded border border-slate-200/60 truncate max-w-[80px]">
+                                  {vehicle.status === 'Listo para Venta' ? 'Listo' : vehicle.status}
                                 </span>
 
                                 <button
                                   onClick={() => {
-                                    // If pushing beyond aesthetic columns style to ready unit
                                     if (columnKey === 'Estetica') {
                                       onUpdateVehicleStatus(vehicle.id, 'Listo para Venta');
                                     } else {
                                       moveVehicle(vehicle, 'forward');
                                     }
                                   }}
-                                  className="p-1 bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-600 rounded border border-blue-200 transition-all cursor-pointer"
+                                  disabled={columnKey === 'Listo para Venta'}
+                                  className="p-1 bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-600 disabled:opacity-30 disabled:pointer-events-none rounded border border-blue-200 transition-all cursor-pointer"
                                   title="Avanzar etapa"
                                 >
                                   <ArrowRight className="w-3.5 h-3.5" />
@@ -414,47 +427,57 @@ export default function DashboardOverview({
         <div className="lg:col-span-2 space-y-6">
           
           {/* Section 1: Importaciones Recientes */}
-          <div className="bg-white border border-slate-200 p-5 rounded-2xl shadow-sm" id="importation-ledger-section">
-            <div className="flex justify-between items-center border-b border-slate-100 pb-3.5 mb-4">
-              <div>
-                <h3 className="text-sm font-sans font-extrabold text-slate-850 tracking-tight">Registro de Importaciones Recientes</h3>
-                <p className="text-[10px] text-slate-400 mt-0.5">Control de pre-expedientes, fletes internacionales y aduanizados en USD.</p>
-              </div>
-              <span className="text-[10px] font-mono text-slate-600 font-bold bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200">
-                Logística Activa
+          {(isTaller || isEstetica) ? (
+            <div className="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm text-center py-10 text-slate-500 text-xs">
+              <Lock className="w-8 h-8 text-slate-350 mx-auto mb-2" />
+              <span className="block font-bold text-slate-800 text-sm uppercase">Costos de Adquisición Bloqueados</span>
+              <span className="text-[10.5px] text-slate-550 max-w-md mx-auto block mt-1.5 leading-relaxed">
+                Su perfil de <strong>{role === 'Taller' ? 'Jefe de Taller' : 'Encargado de Estética'}</strong> no cuenta con autorización corporativa de compras. Los precios de subasta, fletes internacionales y aranceles son de carácter reservado.
               </span>
             </div>
+          ) : (
+            <div className="bg-white border border-slate-200 p-5 rounded-2xl shadow-sm" id="importation-ledger-section">
+              <div className="flex justify-between items-center border-b border-slate-100 pb-3.5 mb-4">
+                <div>
+                  <h3 className="text-sm font-sans font-extrabold text-slate-850 tracking-tight">Registro de Importaciones Recientes</h3>
+                  <p className="text-[10px] text-slate-400 mt-0.5">Control de pre-expedientes, fletes internacionales y aduanizados en USD.</p>
+                </div>
+                <span className="text-[10px] font-mono text-slate-600 font-bold bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200">
+                  Logística Activa
+                </span>
+              </div>
 
-            <div className="overflow-x-auto text-[11px]" id="importation-table-wrapper">
-              <table className="w-full text-left text-slate-600">
-                <thead>
-                  <tr className="border-b border-slate-200 text-slate-400 font-bold bg-slate-50/50">
-                    <th className="py-2.5 px-2">VIN</th>
-                    <th className="py-2.5 px-2">Modelo</th>
-                    <th className="py-2.5 px-2 text-right">Compra</th>
-                    <th className="py-2.5 px-2 text-right">Flete</th>
-                    <th className="py-2.5 px-2 text-right">Nacionalización</th>
-                    <th className="py-2.5 px-2 text-right font-semibold text-blue-600">Total USD</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                  {physicalVehicles.map((v) => {
-                    const totalImportCost = v.acquisitionCost + v.freightCost + v.nationalizationCost + v.otherExpenses;
-                    return (
-                      <tr key={v.id} className="hover:bg-slate-50/50 transition-colors">
-                        <td className="py-2.5 px-2 font-mono text-blue-600 font-bold">{v.vin}</td>
-                        <td className="py-2.5 px-2 font-bold text-slate-800">{v.year} {v.brand} {v.model}</td>
-                        <td className="py-2.5 px-2 text-right font-mono text-slate-600">${v.acquisitionCost.toLocaleString()}</td>
-                        <td className="py-2.5 px-2 text-right font-mono text-slate-600">${v.freightCost.toLocaleString()}</td>
-                        <td className="py-2.5 px-2 text-right font-mono text-slate-600">${v.nationalizationCost.toLocaleString()}</td>
-                        <td className="py-2.5 px-2 text-right font-mono text-blue-600 font-extrabold">${totalImportCost.toLocaleString()}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+              <div className="overflow-x-auto text-[11px]" id="importation-table-wrapper">
+                <table className="w-full text-left text-slate-600">
+                  <thead>
+                    <tr className="border-b border-slate-200 text-slate-400 font-bold bg-slate-50/50">
+                      <th className="py-2.5 px-2">VIN</th>
+                      <th className="py-2.5 px-2">Modelo</th>
+                      <th className="py-2.5 px-2 text-right">Compra</th>
+                      <th className="py-2.5 px-2 text-right">Flete</th>
+                      <th className="py-2.5 px-2 text-right">Nacionalización</th>
+                      <th className="py-2.5 px-2 text-right font-semibold text-blue-600">Total USD</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {physicalVehicles.map((v) => {
+                      const totalImportCost = v.acquisitionCost + v.freightCost + v.nationalizationCost + v.otherExpenses;
+                      return (
+                        <tr key={v.id} className="hover:bg-slate-50/50 transition-colors">
+                          <td className="py-2.5 px-2 font-mono text-blue-600 font-bold">{v.vin}</td>
+                          <td className="py-2.5 px-2 font-bold text-slate-800">{v.year} {v.brand} {v.model}</td>
+                          <td className="py-2.5 px-2 text-right font-mono text-slate-600">${v.acquisitionCost.toLocaleString()}</td>
+                          <td className="py-2.5 px-2 text-right font-mono text-slate-600">${v.freightCost.toLocaleString()}</td>
+                          <td className="py-2.5 px-2 text-right font-mono text-slate-600">${v.nationalizationCost.toLocaleString()}</td>
+                          <td className="py-2.5 px-2 text-right font-mono text-blue-600 font-extrabold">${totalImportCost.toLocaleString()}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Section 2: Bitácora de Gastos e Insumos */}
           {isComprador ? (
@@ -520,13 +543,13 @@ export default function DashboardOverview({
         <div className="space-y-6">
           
           {/* Section 1: Sales / Ventas Recientes & Margin Chart */}
-          {isComprador ? (
+          {(isComprador || isTaller || isEstetica) ? (
             <div className="bg-white border border-slate-200 p-5 rounded-2xl shadow-sm space-y-3">
-              <h3 className="text-sm font-sans font-bold text-slate-850 tracking-tight">Ventas y Rentabilidades</h3>
-              <div className="border border-dashed border-slate-200 p-4 py-8 rounded-xl text-center text-slate-400">
-                <Lock className="w-6 h-6 mx-auto mb-1 text-slate-350" />
-                <span className="text-[10px] block font-bold text-slate-700">Precios y Utilidades Restringidas</span>
-                <span className="text-[9px] text-slate-400 block mt-0.5">El Comprador no puede auditar precios finales de venta ni utilidades netas por unidad.</span>
+              <h3 className="text-xs font-sans font-bold text-slate-400 tracking-wider uppercase mb-1">Ventas y Margen Reciente</h3>
+              <div className="border border-dashed border-slate-200 p-4 py-8 rounded-xl text-center text-slate-450">
+                <Lock className="w-6 h-6 mx-auto mb-1 text-slate-300" />
+                <span className="text-[10px] block font-bold text-slate-700">Precios de Venta Bloqueados</span>
+                <span className="text-[9px] text-slate-400 block mt-0.5">El perfil de {role} tiene bloqueado el acceso a precios finales de venta y márgenes.</span>
               </div>
             </div>
           ) : (
@@ -570,13 +593,13 @@ export default function DashboardOverview({
           )}
 
           {/* Section 2: Supplies breakdown & aesthetic products */}
-          {isComprador ? (
+          {(isComprador || isTaller) ? (
             <div className="bg-white border border-slate-200 p-5 rounded-2xl shadow-sm space-y-2">
-              <h3 className="text-sm font-sans font-bold text-slate-850 tracking-tight">Insumos del Lote</h3>
-              <div className="border border-dashed border-slate-200 p-4 py-8 rounded-xl text-center text-slate-400">
+              <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Gastos de Estética y Limpieza</h3>
+              <div className="border border-dashed border-slate-200 p-4 py-8 rounded-xl text-center text-slate-450">
                 <Lock className="w-6 h-6 mx-auto mb-1 text-slate-350" />
-                <span className="text-[10px] block font-bold text-slate-700">Inventario Insumos Globals Bloqueado</span>
-                <span className="text-[9px] text-slate-400 block mt-0.5">Módulo de estética exclusivo de encargados locales.</span>
+                <span className="text-[10px] block font-bold text-slate-700">Gastos Estéticos Cifrados</span>
+                <span className="text-[9px] text-slate-400 block mt-0.5">Su perfil de {role === 'Taller' ? 'Jefe de Taller' : role} no gestiona comisiones ni mermas globales de cosméticos estéticos.</span>
               </div>
             </div>
           ) : (
@@ -632,7 +655,7 @@ export default function DashboardOverview({
       </div>
 
       {/* 5. Custom Real-Time SVG Performance Charts (Dashboard Reportes / KPIs) */}
-      {!isComprador ? (
+      {(role === 'Administrador' || role === 'Contador') ? (
         <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm" id="dashboard-reports-kpi-charts">
           <h3 className="text-sm font-sans font-black text-slate-800 tracking-tight mb-5">Dashboard Reportes / KPIs</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -772,7 +795,7 @@ export default function DashboardOverview({
           <ShieldAlert className="w-8 h-8 text-blue-500 mx-auto mb-2" />
           <span className="block font-sans font-bold text-slate-800 text-sm uppercase">Módulo 6: Dashboard de KPIs Financieros Bloqueado</span>
           <span className="text-slate-500 text-[10.5px] max-w-lg mx-auto block mt-1.5 leading-relaxed">
-            Las metas de utilidades anuales accumulativas, las curvas splines de ISR/Margen bruto aduanal y las tasas de conversión son confidenciales del socio principal. Su perfil de supervisor operativo de compras carece de estos privilegios.
+            Las metas de utilidades acumuladas mensuales, curvas splines de ISR/IVA aduanal, y tasas de conversión comercial son de carácter reservado. Su perfil actual de <strong>{role}</strong> carece de privilegios corporativos.
           </span>
         </div>
       )}

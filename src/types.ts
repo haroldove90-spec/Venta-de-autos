@@ -46,7 +46,8 @@ export interface Vehicle {
 export interface Expense {
   id: string;
   vin: string;
-  type: 'Hojalateria' | 'Mecanica' | 'Clima' | 'Estetica' | 'Otros';
+  type: 'Hojalateria' | 'Mecanica' | 'Clima' | 'Estetica' | 'Otros' | 'Cristales';
+  subtype?: 'Mano de Obra' | 'Refacciones';
   concept: string;
   provider: string;
   cost: number;
