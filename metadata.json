@@ -1,0 +1,6 @@
+{
+  "name": "Auto-Gestor Pro",
+  "description": "Dashboard integral para lotes y concesionarios de autos con roles de Administrador, Comprador, Taller, Estética y Contador, con pasarela de pagos e inventario en tiempo real.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
