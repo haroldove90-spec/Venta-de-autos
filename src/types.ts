@@ -57,7 +57,7 @@ export interface Expense {
 export interface SupplyExpense {
   id: string;
   name: string;
-  category: 'Estetica' | 'Taller' | 'Oficina';
+  category: string;
   cost: number;
   date: string;
 }

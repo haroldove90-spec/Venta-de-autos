@@ -363,7 +363,7 @@ export default function DashboardOverview({
                           </div>
 
                           {/* Quick repairs tally */}
-                          {totalCarExpenseCost > 0 && !isComprador && (
+                          {totalCarExpenseCost > 0 && !isComprador && !isEstetica && (
                             <div className="mt-2 text-[9px] bg-rose-50 text-rose-600 border border-rose-100 py-0.5 px-2 rounded font-mono inline-block font-bold">
                               Reparaciones: ${totalCarExpenseCost.toLocaleString('es-MX')} MXN
                             </div>
@@ -371,42 +371,65 @@ export default function DashboardOverview({
 
                           {/* Interactive status navigation buttons */}
                           <div className="flex items-center justify-between mt-3.5 pt-3 border-t border-slate-100">
-                            {isComprador ? (
-                              <div className="w-full text-center text-[9px] text-slate-400 font-medium flex items-center justify-center gap-1">
-                                <Lock className="w-3 h-3" />
-                                <span>Monitoreo (Solo Lectura)</span>
-                              </div>
-                            ) : (
-                              <>
-                                <button
-                                  onClick={() => moveVehicle(vehicle, 'backward')}
-                                  disabled={columnKey === 'Hojalateria'}
-                                  className={`p-1 bg-slate-50 text-slate-500 hover:text-blue-600 hover:bg-blue-50/50 rounded border border-slate-200 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer`}
-                                  title="Subir etapa previa"
-                                >
-                                  <ArrowLeft className="w-3.5 h-3.5" />
-                                </button>
-                                
-                                <span className="text-[9px] font-sans font-bold text-slate-550 uppercase bg-slate-50 px-1.5 py-0.5 rounded border border-slate-200/60 truncate max-w-[80px]">
-                                  {vehicle.status === 'Listo para Venta' ? 'Listo' : vehicle.status}
-                                </span>
+                            {(() => {
+                              const canMoveThis = 
+                                isAdmin ||
+                                (isTaller && (columnKey === 'Hojalateria' || columnKey === 'Mecanica' || columnKey === 'Clima')) ||
+                                (isEstetica && columnKey === 'Estetica');
 
-                                <button
-                                  onClick={() => {
-                                    if (columnKey === 'Estetica') {
-                                      onUpdateVehicleStatus(vehicle.id, 'Listo para Venta');
-                                    } else {
-                                      moveVehicle(vehicle, 'forward');
-                                    }
-                                  }}
-                                  disabled={columnKey === 'Listo para Venta'}
-                                  className="p-1 bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-600 disabled:opacity-30 disabled:pointer-events-none rounded border border-blue-200 transition-all cursor-pointer"
-                                  title="Avanzar etapa"
-                                >
-                                  <ArrowRight className="w-3.5 h-3.5" />
-                                </button>
-                              </>
-                            )}
+                              if (!canMoveThis) {
+                                return (
+                                  <div className="w-full text-center text-[9px] text-slate-400 font-bold flex items-center justify-center gap-1 bg-slate-50/50 py-1.5 rounded-lg border border-slate-200">
+                                    <Lock className="w-3 h-3 text-slate-400" />
+                                    <span>
+                                      {isEstetica ? 'Monitoreo de Entrada (Lectura)' : 'Solo Lectura'}
+                                    </span>
+                                  </div>
+                                );
+                              }
+
+                              return (
+                                <>
+                                  <button
+                                    onClick={() => moveVehicle(vehicle, 'backward')}
+                                    disabled={columnKey === 'Hojalateria'}
+                                    className="p-1 bg-slate-50 text-slate-500 hover:text-blue-600 hover:bg-blue-50/50 rounded border border-slate-200 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
+                                    title="Subir etapa previa"
+                                  >
+                                    <ArrowLeft className="w-3.5 h-3.5" />
+                                  </button>
+                                  
+                                  {isEstetica && columnKey === 'Estetica' ? (
+                                    <button
+                                      onClick={() => onUpdateVehicleStatus(vehicle.id, 'Listo para Venta')}
+                                      className="text-[9px] font-sans font-black text-purple-700 uppercase bg-purple-50 hover:bg-purple-600 hover:text-white px-2 py-1 rounded-xl border border-purple-200 transition-all cursor-pointer animate-pulse shrink-0"
+                                      title="Notificar Entrega: Listo para Venta"
+                                    >
+                                      ✨ Notificar Listo
+                                    </button>
+                                  ) : (
+                                    <span className="text-[9px] font-sans font-bold text-slate-550 uppercase bg-slate-50 px-1.5 py-0.5 rounded border border-slate-200/60 truncate max-w-[80px]">
+                                      {vehicle.status === 'Listo para Venta' ? 'Listo' : vehicle.status}
+                                    </span>
+                                  )}
+
+                                  <button
+                                    onClick={() => {
+                                      if (columnKey === 'Estetica') {
+                                        onUpdateVehicleStatus(vehicle.id, 'Listo para Venta');
+                                      } else {
+                                        moveVehicle(vehicle, 'forward');
+                                      }
+                                    }}
+                                    disabled={columnKey === 'Listo para Venta'}
+                                    className="p-1 bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-600 disabled:opacity-30 disabled:pointer-events-none rounded border border-blue-200 transition-all cursor-pointer"
+                                    title="Avanzar etapa"
+                                  >
+                                    <ArrowRight className="w-3.5 h-3.5" />
+                                  </button>
+                                </>
+                              );
+                            })()}
                           </div>
                         </motion.div>
                       );

@@ -1,4 +1,4 @@
-import { LayoutDashboard, Car, Ship, Wrench, DollarSign, Wallet, FileBarChart, LogOut, RefreshCw, ChevronDown, UserCircle, Shield, ShoppingBag, Sparkles } from 'lucide-react';
+import { LayoutDashboard, Car, Ship, Wrench, DollarSign, Wallet, FileBarChart, LogOut, RefreshCw, ChevronDown, UserCircle, Shield, ShoppingBag, Sparkles, X } from 'lucide-react';
 import { UserRole } from '../types';
 import { ROLES } from '../mockData';
 
@@ -8,9 +8,19 @@ interface SidebarProps {
   currentUser: { role: UserRole; name: string };
   onLogout: () => void;
   onSwitchRole: (role: UserRole) => void;
+  isOpenMobile?: boolean;
+  onCloseMobile?: () => void;
 }
 
-export default function Sidebar({ activeTab, setActiveTab, currentUser, onLogout, onSwitchRole }: SidebarProps) {
+export default function Sidebar({ 
+  activeTab, 
+  setActiveTab, 
+  currentUser, 
+  onLogout, 
+  onSwitchRole,
+  isOpenMobile,
+  onCloseMobile
+}: SidebarProps) {
   
   // Custom filter of menuItems depending on role permissions of the active user
   const getMenuItemsForRole = (role: UserRole) => {
@@ -64,7 +74,7 @@ export default function Sidebar({ activeTab, setActiveTab, currentUser, onLogout
   };
 
   return (
-    <aside className="w-64 bg-slate-900 border-r border-slate-800 flex flex-col shrink-0 h-screen text-slate-300" id="app-sidebar">
+    <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 border-r border-slate-800 flex flex-col shrink-0 h-screen text-slate-300 transition-transform duration-300 ${isOpenMobile ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:static md:flex`} id="app-sidebar">
       {/* Brand Logo in Sidebar */}
       <div className="p-5 border-b border-slate-800 flex items-center justify-between" id="sidebar-header">
         <div className="flex items-center gap-2">
@@ -75,6 +85,17 @@ export default function Sidebar({ activeTab, setActiveTab, currentUser, onLogout
             AUTO-GESTOR <span className="text-blue-500 font-extrabold text-[9px] align-super bg-blue-500/10 py-0.5 px-1 rounded ml-0.5">PRO</span>
           </span>
         </div>
+        
+        {/* Toggle option for mobile closing */}
+        {onCloseMobile && (
+          <button 
+            onClick={onCloseMobile}
+            className="md:hidden p-1 bg-slate-800/80 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-white"
+            title="Cerrar Menú"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        )}
       </div>
 
       {/* Role State Banner */}

@@ -10,12 +10,17 @@ import RepairsManager from './components/RepairsManager';
 import ExpensesManager from './components/ExpensesManager';
 import ReportsView from './components/ReportsView';
 import PaymentGateway from './components/PaymentGateway';
-import { ShieldAlert, AlertCircle, Sparkles, CheckCircle2 } from 'lucide-react';
+import { ShieldAlert, AlertCircle, Sparkles, CheckCircle2, Menu, Smartphone, Download } from 'lucide-react';
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState<{ role: UserRole; name: string } | null>(null);
   const [activeTab, setActiveTab] = useState<string>('dashboard');
   
+  // PWA & Mobile drawer global states
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [showInstallBanner, setShowInstallBanner] = useState<boolean>(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+
   // Real-time local state engine with local storage persistence
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [expenses, setExpenses] = useState<Expense[]>([]);
@@ -23,6 +28,39 @@ export default function App() {
   
   // Active payment gateway proxy variables
   const [activePaymentVehicle, setActivePaymentVehicle] = useState<Vehicle | null>(null);
+
+  // PWA listener hook
+  useEffect(() => {
+    const handleBeforePrompt = (e: any) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setShowInstallBanner(true);
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforePrompt);
+    
+    // Check if running on standalone mode
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      setShowInstallBanner(false);
+    }
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforePrompt);
+    };
+  }, []);
+
+  const triggerPWAInstall = async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log(`PWA Installation outcome choice: ${outcome}`);
+      setDeferredPrompt(null);
+      setShowInstallBanner(false);
+    } else {
+      // Elegant, styled modal-based alert info
+      alert("📲 ¡Instala AUTO-GESTOR PRO en tu celular!\n\n🤖 Android / Chrome:\n1. Toca los tres puntos de opciones arriba a la derecha de tu navegador.\n2. Selecciona 'Instalar aplicación' o 'Agregar a la pantalla principal'.\n\n🍏 iOS/Safari (iPhone/iPad):\n1. Presiona el botón de 'Compartir' (el panel cuadrado con la flecha apuntando arriba).\n2. Desliza hacia abajo y presiona 'Agregar a inicio'.");
+    }
+  };
 
   // Initialize data on load
   useEffect(() => {
@@ -318,34 +356,70 @@ export default function App() {
   return (
     <div className="flex h-screen bg-slate-100 text-slate-800 overflow-hidden" id="app-main-view">
       
+      {/* Mobile Drawer Backdrop Overlay */}
+      {isMobileMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-slate-950/50 backdrop-blur-xs z-45 md:hidden transition-opacity" 
+          onClick={() => setIsMobileMenuOpen(false)} 
+        />
+      )}
+
       {/* 1. Left Sidebar Navigation Panel */}
       <Sidebar 
         activeTab={activeTab} 
-        setActiveTab={setActiveTab} 
+        setActiveTab={(tab) => {
+          setActiveTab(tab);
+          setIsMobileMenuOpen(false); // Auto-close drawer on click on mobile
+        }} 
         currentUser={currentUser} 
         onLogout={handleLogout}
         onSwitchRole={handleSwitchRole}
+        isOpenMobile={isMobileMenuOpen}
+        onCloseMobile={() => setIsMobileMenuOpen(false)}
       />
 
       {/* 2. Main Content Board */}
       <main className="flex-1 flex flex-col h-full bg-[#f1f5f9] overflow-hidden" id="dashboard-content-frame">
         
         {/* Top interactive navbar */}
-        <header className="h-14 border-b border-slate-200 px-6 flex items-center justify-between shrink-0 bg-white shadow-sm">
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-500">
-            <span>Grupo Concesionarios del Lote</span>
-            <span>/</span>
-            <span className="text-slate-700 capitalize font-bold">{activeTab}</span>
+        <header className="h-14 border-b border-slate-200 px-4 md:px-6 flex items-center justify-between shrink-0 bg-white shadow-sm gap-2">
+          
+          <div className="flex items-center gap-2">
+            {/* Mobile Hamburger menu toggle button */}
+            <button 
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="md:hidden p-2 text-slate-600 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl transition-all mr-1 cursor-pointer"
+              title="Abrir Menú"
+            >
+              <Menu className="w-4 h-4" />
+            </button>
+
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-500">
+              <span className="hidden sm:inline">Grupo Concesionarios del Lote</span>
+              <span className="hidden sm:inline">/</span>
+              <span className="text-slate-750 capitalize font-extrabold">{activeTab}</span>
+            </div>
           </div>
           
-          <div className="flex items-center gap-6">
-            <span className="text-[10px] font-mono text-slate-500 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200 font-bold">
-              Servidor Activo • UTC-6 Monterrey
+          <div className="flex items-center gap-3 md:gap-6">
+            
+            {/* HIGHLIGHTED FLASHY PWA INSTALL BUTTON */}
+            <button 
+              onClick={triggerPWAInstall}
+              className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-sans font-black text-[9px] md:text-[10px] uppercase py-2 px-3.5 rounded-xl shadow-lg shadow-indigo-600/20 active:translate-y-[1px] hover:scale-102 transition-all cursor-pointer animate-bounce shrink-0 border border-indigo-400 flex items-center gap-1.5"
+              id="pwa-install-header-btn"
+            >
+              <Smartphone className="w-3 md:w-3.5 h-3 md:h-3.5" />
+              <span>Instalar App 📲</span>
+            </button>
+
+            <span className="hidden lg:inline text-[10px] font-mono text-slate-500 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200 font-bold">
+              Servidor Activo • UTC-6
             </span>
-            <div className="text-[11px] font-bold text-slate-800 flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+            
+            <div className="text-[11px] font-bold text-slate-800 flex items-center gap-1.5 max-w-[120px] md:max-w-none truncate">
               {currentUser.name}
-              <span className="text-[9px] bg-blue-50 text-blue-600 py-0.5 px-1.5 border border-blue-100 rounded-md font-mono font-bold uppercase">
+              <span className="hidden xs:inline text-[9px] bg-blue-50 text-blue-600 py-0.5 px-1.5 border border-blue-100 rounded-md font-mono font-bold uppercase">
                 {currentUser.role}
               </span>
             </div>
@@ -353,7 +427,7 @@ export default function App() {
         </header>
 
         {/* Dynamic Inner Workspace body */}
-        <div className="flex-1 overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-slate-300">
+        <div className="flex-1 overflow-y-auto p-4 md:p-6 scrollbar-thin scrollbar-thumb-slate-300">
           
           {/* Top warning alerts depending on selected role privileges */}
           {getRoleAlertNotice()}
