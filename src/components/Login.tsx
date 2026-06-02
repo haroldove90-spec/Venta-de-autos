@@ -15,7 +15,7 @@ export default function Login({ onLogin }: LoginProps) {
   const getRoleIcon = (roleId: UserRole) => {
     switch (roleId) {
       case 'Administrador': return <Shield className="w-6 h-6 text-amber-500" id="icon-admin" />;
-      case 'Comprador': return <ShoppingBag className="w-6 h-6 text-blue-500" id="icon-buyer" />;
+      case 'Comprador': return <ShoppingBag className="w-6 h-6 text-indigo-400" id="icon-buyer" />;
       case 'Taller': return <Wrench className="w-6 h-6 text-emerald-500" id="icon-workshop" />;
       case 'Estetica': return <Sparkles className="w-6 h-6 text-purple-500" id="icon-aesthetic" />;
       case 'Contador': return <DollarSign className="w-6 h-6 text-rose-500" id="icon-accounting" />;
@@ -42,7 +42,7 @@ export default function Login({ onLogin }: LoginProps) {
   return (
     <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-4 relative overflow-hidden" id="login-container">
       {/* Background decorations matching sleek dealership aesthetic */}
-      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[60%] rounded-full bg-blue-900/10 blur-[120px] pointer-events-none" />
+      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[60%] rounded-full bg-emerald-900/10 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[60%] rounded-full bg-violet-900/10 blur-[120px] pointer-events-none" />
       
       {/* Brand Header */}
@@ -52,12 +52,12 @@ export default function Login({ onLogin }: LoginProps) {
         className="flex flex-col items-center mb-8 text-center"
         id="login-brand"
       >
-        <div className="flex items-center gap-3 bg-slate-900 border border-slate-800 px-5 py-3 rounded-2xl shadow-xl shadow-slate-950/50 mb-3 hover:border-blue-500/30 transition-all">
-          <div className="p-2 bg-blue-600/10 text-blue-400 rounded-lg">
+        <div className="flex items-center gap-3 bg-slate-900 border border-slate-800 px-5 py-3 rounded-2xl shadow-xl shadow-slate-950/50 mb-3 hover:border-emerald-500/30 transition-all">
+          <div className="p-2 bg-emerald-600/10 text-emerald-400 rounded-lg">
             <Car className="w-7 h-7" id="logo-car" />
           </div>
           <span className="font-sans font-bold tracking-wider text-xl text-white">
-            AUTO-GESTOR <span className="text-blue-500 font-extrabold text-xs align-super bg-blue-500/10 py-0.5 px-1.5 rounded ml-1">PRO</span>
+            AUTO-GESTOR <span className="text-emerald-500 font-extrabold text-xs align-super bg-emerald-500/10 py-0.5 px-1.5 rounded ml-1">PRO</span>
           </span>
         </div>
         <p className="text-slate-400 text-sm max-w-md">
@@ -90,7 +90,7 @@ export default function Login({ onLogin }: LoginProps) {
                   }}
                   className={`relative flex flex-col text-left p-4 rounded-2xl border transition-all duration-300 group overflow-hidden h-full ${
                     isSelected 
-                      ? 'bg-slate-800/80 border-blue-500 ring-2 ring-blue-500/20 shadow-lg shadow-blue-500/5' 
+                      ? 'bg-slate-800/80 border-emerald-500 ring-2 ring-emerald-500/20 shadow-lg shadow-emerald-500/5' 
                       : 'bg-slate-900/50 border-slate-800/80 hover:border-slate-700/80 hover:bg-slate-800/40'
                   }`}
                   id={`role-btn-${role.id}`}
@@ -103,11 +103,11 @@ export default function Login({ onLogin }: LoginProps) {
                       {getRoleIcon(role.id)}
                     </div>
                     {isSelected && (
-                      <span className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
                     )}
                   </div>
                   
-                  <h3 className="font-sans font-semibold text-sm text-white group-hover:text-blue-400 transition-colors">
+                  <h3 className="font-sans font-semibold text-sm text-white group-hover:text-emerald-400 transition-colors">
                     {role.title}
                   </h3>
                   <span className="text-[10px] text-slate-500 font-medium tracking-tight mt-0.5 uppercase">
@@ -138,14 +138,14 @@ export default function Login({ onLogin }: LoginProps) {
                   value={customName}
                   onChange={(e) => setCustomName(e.target.value)}
                   placeholder={getDefaultName(selectedRole)}
-                  className="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm text-white rounded-xl py-2 px-3 outline-none transition-all placeholder:text-slate-600 font-sans"
+                  className="w-full bg-slate-900 border border-slate-800 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-sm text-white rounded-xl py-2 px-3 outline-none transition-all placeholder:text-slate-600 font-sans"
                   id="operator-name-input"
                 />
               </div>
               
               <button
                 type="submit"
-                className="w-full md:w-auto bg-blue-600 hover:bg-blue-500 text-white font-sans font-semibold text-xs py-3 px-6 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-blue-500/10 cursor-pointer hover:shadow-blue-500/20 active:translate-y-[1px] transition-all self-end"
+                className="w-full md:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-sans font-semibold text-xs py-3 px-6 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/10 cursor-pointer hover:shadow-emerald-500/20 active:translate-y-[1px] transition-all self-end"
                 id="enter-app-btn"
               >
                 Ingresar al Dashboard

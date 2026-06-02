@@ -121,133 +121,133 @@ export default function DashboardOverview({
         
         {/* Card 1: Utilidad Neta Mensual */}
         {(isComprador || isTaller || isEstetica) ? (
-          <div className="bg-white border border-slate-200/80 p-5 rounded-2xl flex flex-col justify-between h-36 relative overflow-hidden bg-slate-50/20 shadow-sm">
+          <div className="bg-[#D2D3D5]/40 border border-slate-300 p-5 rounded-2xl flex flex-col justify-between h-36 relative overflow-hidden shadow-sm">
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-sans text-slate-400 font-bold uppercase tracking-wider">Utilidad Neta Mensual</span>
-              <Lock className="w-4 h-4 text-slate-350" />
+              <span className="text-[11px] font-sans text-slate-500 font-bold uppercase tracking-wider">Utilidad Neta Mensual</span>
+              <Lock className="w-4 h-4 text-slate-500" />
             </div>
             <div className="mt-2 space-y-1">
-              <div className="text-xs font-bold text-slate-400 tracking-wider flex items-center gap-1">
+              <div className="text-xs font-bold text-slate-600 tracking-wider flex items-center gap-1">
                 <span>[RESTRINGIDO]</span>
               </div>
-              <span className="text-[10px] text-slate-400 font-medium block leading-tight">
+              <span className="text-[10px] text-slate-500 font-medium block leading-tight">
                 El perfil {role} tiene bloqueado el acceso a métricas de utilidades.
               </span>
             </div>
-            <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-100" />
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-400" />
           </div>
         ) : (
-          <div className="bg-white hover:border-slate-300 transition-all border border-slate-200/80 p-5 rounded-2xl relative overflow-hidden flex flex-col justify-between h-36 shadow-sm">
+          <div className="bg-[#D2D3D5] hover:bg-[#c6c7c9] transition-all border border-slate-350 p-5 rounded-2xl relative overflow-hidden flex flex-col justify-between h-36 shadow-sm">
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-sans text-slate-500 font-bold uppercase tracking-wider">Utilidad Neta Mensual</span>
-              <TrendingUp className="w-4 h-4 text-emerald-500" />
+              <span className="text-[11px] font-sans text-slate-700 font-bold uppercase tracking-wider">Utilidad Neta Mensual</span>
+              <TrendingUp className="w-4 h-4 text-emerald-700" />
             </div>
             <div className="mt-1.5">
-              <span className="text-2xl font-black text-slate-900 font-sans tracking-tight">
+              <span className="text-2xl font-black text-[#090909] font-sans tracking-tight">
                 ${netProfitMXN.toLocaleString('es-MX')}
               </span>
-              <span className="text-[10px] text-slate-500 font-bold ml-1 font-mono">MXN</span>
+              <span className="text-[10px] text-slate-600 font-bold ml-1 font-mono">MXN</span>
             </div>
             {/* Wave Spline Graph representing growth */}
-            <div className="absolute bottom-0 left-0 right-0 h-10 overflow-hidden pointer-events-none opacity-80">
+            <div className="absolute bottom-0 left-0 right-0 h-10 overflow-hidden pointer-events-none opacity-85">
               <svg viewBox="0 0 100 25" preserveAspectRatio="none" className="w-full h-full">
                 <defs>
                   <linearGradient id="glowGradLight" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#10b981" stopOpacity="0.15" />
-                    <stop offset="100%" stopColor="#10b981" stopOpacity="0" />
+                    <stop offset="0%" stopColor="#047857" stopOpacity="0.25" />
+                    <stop offset="100%" stopColor="#047857" stopOpacity="0" />
                   </linearGradient>
                 </defs>
                 <path d="M0 20 Q 25 5, 50 15 T 100 5 L 100 25 L 0 25 Z" fill="url(#glowGradLight)" />
-                <path d="M0 20 Q 25 5, 50 15 T 100 5" fill="none" stroke="#10b981" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M0 20 Q 25 5, 50 15 T 100 5" fill="none" stroke="#047857" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
             </div>
           </div>
         )}
 
         {/* Card 2: Vehículos Vendidos (Mes) */}
-        <div className="bg-white hover:border-slate-300 transition-all border border-slate-200/80 p-5 rounded-2xl flex items-center justify-between h-36 shadow-sm">
+        <div className="bg-[#D2D3D5] hover:bg-[#c6c7c9] transition-all border border-slate-350 p-5 rounded-2xl flex items-center justify-between h-36 shadow-sm">
           <div className="flex flex-col justify-between h-full py-0.5">
-            <span className="text-[11px] font-sans text-slate-500 font-bold uppercase tracking-wider">Vehículos Vendidos (Mes)</span>
+            <span className="text-[11px] font-sans text-slate-700 font-bold uppercase tracking-wider">Vehículos Vendidos (Mes)</span>
             <div className="mt-1.5">
-              <span className="text-2xl font-black text-slate-900 font-sans tracking-tight">
+              <span className="text-2xl font-black text-[#090909] font-sans tracking-tight">
                 {soldCount + 16} / {soldTarget}
               </span>
-              <div className="text-[10px] text-slate-400 mt-1 font-medium">Meta comercial del lote</div>
+              <div className="text-[10px] text-slate-600 mt-1 font-semibold">Meta comercial del lote</div>
             </div>
           </div>
           {/* Circular donut representing percentage */}
           <div className="relative w-16 h-16 shrink-0 flex items-center justify-center">
             <svg className="w-full h-full transform -rotate-95">
-              <circle cx="32" cy="32" r="26" stroke="#f1f5f9" strokeWidth="5" fill="none" />
-              <circle cx="32" cy="32" r="26" stroke="#3b82f6" strokeWidth="5" fill="none" 
+              <circle cx="32" cy="32" r="26" stroke="#bdf2e2" strokeWidth="5" fill="none" />
+              <circle cx="32" cy="32" r="26" stroke="#047857" strokeWidth="5" fill="none" 
                 strokeDasharray={`${Math.PI * 2 * 26}`} 
                 strokeDashoffset={`${Math.PI * 2 * 26 * (1 - (soldCount + 16) / soldTarget)}`} 
                 strokeLinecap="round"
               />
             </svg>
-            <span className="absolute text-xs font-mono font-bold text-slate-800">
+            <span className="absolute text-xs font-mono font-bold text-[#090909]">
               {Math.round(((soldCount + 16) / soldTarget) * 100)}%
             </span>
           </div>
         </div>
 
         {/* Card 3: Vehículos en Stock */}
-        <div className="bg-white hover:border-slate-300 transition-all border border-slate-200/80 p-5 rounded-2xl flex flex-col justify-between h-36 shadow-sm">
+        <div className="bg-[#D2D3D5] hover:bg-[#c6c7c9] transition-all border border-slate-350 p-5 rounded-2xl flex flex-col justify-between h-36 shadow-sm">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-sans text-slate-500 font-bold uppercase tracking-wider">Vehículos en Stock</span>
-            <span className="text-[9px] bg-slate-100 text-slate-600 py-0.5 px-2 rounded-full font-bold">Lote</span>
+            <span className="text-[11px] font-sans text-slate-700 font-bold uppercase tracking-wider">Vehículos en Stock</span>
+            <span className="text-[9px] bg-slate-205 text-slate-700 py-0.5 px-2 rounded-full font-bold">Lote</span>
           </div>
           <div className="mt-1">
-            <span className="text-2xl font-black text-slate-900 tracking-tight">{stockCount + 30} Unidades</span>
+            <span className="text-2xl font-black text-[#090909] tracking-tight">{stockCount + 30} Unidades</span>
             
             {/* Horizontal progress bar showing ready vs incoming */}
-            <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden mt-3 flex">
-              <div className="bg-emerald-500 h-full" style={{ width: `${((readyForSaleCount + 18) / (stockCount + 30)) * 100}%` }} title="Listo para Venta" />
-              <div className="bg-amber-500 h-full" style={{ width: `${((waitingUnitsCount + 12) / (stockCount + 30)) * 100}%` }} title="En Reparación" />
+            <div className="w-full bg-slate-300 h-2 rounded-full overflow-hidden mt-3 flex">
+              <div className="bg-emerald-600 h-full" style={{ width: `${((readyForSaleCount + 18) / (stockCount + 30)) * 100}%` }} title="Listo para Venta" />
+              <div className="bg-amber-600 h-full" style={{ width: `${((waitingUnitsCount + 12) / (stockCount + 30)) * 100}%` }} title="En Reparación" />
             </div>
             
-            <div className="flex items-center gap-4 text-[9px] text-slate-400 mt-2 font-bold uppercase">
-              <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Listo ({readyForSaleCount + 18})</span>
-              <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-amber-500" /> Espera ({waitingUnitsCount + 12})</span>
+            <div className="flex items-center gap-4 text-[9px] text-slate-600 mt-2 font-bold uppercase">
+              <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-emerald-600" /> Listo ({readyForSaleCount + 18})</span>
+              <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-amber-600" /> Espera ({waitingUnitsCount + 12})</span>
             </div>
           </div>
         </div>
 
         {/* Card 4: Costo Real Total (Mes) */}
         {(isComprador || isTaller || isEstetica) ? (
-          <div className="bg-white border border-slate-200/80 p-5 rounded-2xl flex flex-col justify-between h-36 relative overflow-hidden bg-slate-50/20 shadow-sm">
+          <div className="bg-[#D2D3D5]/40 border border-slate-300 p-5 rounded-2xl flex flex-col justify-between h-36 relative overflow-hidden shadow-sm">
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-sans text-slate-400 font-bold uppercase tracking-wider">Costo Real Total (Mes)</span>
-              <Lock className="w-4 h-4 text-slate-350" />
+              <span className="text-[11px] font-sans text-slate-500 font-bold uppercase tracking-wider">Costo Real Total (Mes)</span>
+              <Lock className="w-4 h-4 text-slate-500" />
             </div>
             <div className="mt-2 space-y-1">
-              <div className="text-xs font-bold text-slate-400 tracking-wider flex items-center gap-1">
+              <div className="text-xs font-bold text-slate-600 tracking-wider flex items-center gap-1">
                 <span>[RESTRINGIDO]</span>
               </div>
-              <span className="text-[10px] text-slate-400 font-medium block leading-tight">
+              <span className="text-[10px] text-slate-500 font-medium block leading-tight">
                 El perfil {role} tiene bloqueado el acceso a costos integrales.
               </span>
             </div>
-            <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-100" />
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-400" />
           </div>
         ) : (
-          <div className="bg-white hover:border-slate-300 transition-all border border-slate-200/80 p-5 rounded-2xl flex flex-col justify-between h-36 shadow-sm">
+          <div className="bg-[#D2D3D5] hover:bg-[#c6c7c9] transition-all border border-slate-350 p-5 rounded-2xl flex flex-col justify-between h-36 shadow-sm">
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-sans text-slate-500 font-bold uppercase tracking-wider">Costo Real Total (Mes)</span>
-              <span className="text-[9px] bg-slate-100 text-slate-600 py-0.5 px-2 rounded-full font-bold">Inversiones</span>
+              <span className="text-[11px] font-sans text-slate-700 font-bold uppercase tracking-wider">Costo Real Total (Mes)</span>
+              <span className="text-[9px] bg-slate-205 text-slate-700 py-0.5 px-2 rounded-full font-bold">Inversiones</span>
             </div>
             <div className="mt-1">
-              <span className="text-2xl font-black text-slate-900 tracking-tight">${totalRealCost.toLocaleString('es-MX')} MXN</span>
+              <span className="text-2xl font-black text-[#090909] tracking-tight">${totalRealCost.toLocaleString('es-MX')} MXN</span>
               
               {/* Horizontal progress bar */}
-              <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden mt-3 flex">
-                <div className="bg-blue-600 h-full" style={{ width: '82%' }} title="Adquisición" />
-                <div className="bg-rose-500 h-full" style={{ width: '18%' }} title="Reparaciones" />
+              <div className="w-full bg-slate-300 h-2 rounded-full overflow-hidden mt-3 flex">
+                <div className="bg-emerald-700 h-full" style={{ width: '82%' }} title="Adquisición" />
+                <div className="bg-rose-600 h-full" style={{ width: '18%' }} title="Reparaciones" />
               </div>
 
-              <div className="flex items-center gap-4 text-[9px] text-slate-400 mt-2 font-bold uppercase">
-                <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-blue-600" /> Compra (82%)</span>
-                <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-rose-500" /> Taller (18%)</span>
+              <div className="flex items-center gap-4 text-[9px] text-slate-600 mt-2 font-bold uppercase">
+                <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-emerald-700" /> Compra (82%)</span>
+                <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-rose-600" /> Taller (18%)</span>
               </div>
             </div>
           </div>
@@ -262,7 +262,7 @@ export default function DashboardOverview({
             <h2 className="text-sm font-sans font-bold text-slate-800 tracking-tight flex items-center gap-2">
               Línea de Producción Física y Estados (Pipeline/Kanban)
               {isComprador && (
-                <span className="text-[9px] bg-blue-50 text-blue-600 border border-blue-100 py-0.5 px-2 rounded-full font-bold font-sans">
+                <span className="text-[9px] bg-emerald-50 text-emerald-700 border border-emerald-150 py-0.5 px-2 rounded-full font-bold font-sans">
                   Modo Monitoreo Activo
                 </span>
               )}
@@ -314,7 +314,7 @@ export default function DashboardOverview({
                 <div className="flex flex-col mb-4 pb-2.5 border-b border-slate-200/60 relative">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-black text-slate-850 font-sans tracking-tight">{getStageLabel(columnKey)}</span>
-                    <span className="w-2 h-2 rounded-full bg-blue-600 shadow" />
+                    <span className="w-2 h-2 rounded-full bg-emerald-600 shadow" />
                   </div>
                   <div className="flex items-center justify-between mt-1">
                     <span className="text-[10px] text-slate-400 font-mono font-bold uppercase">
@@ -346,7 +346,7 @@ export default function DashboardOverview({
                         <motion.div
                           key={vehicle.id}
                           layoutId={vehicle.id}
-                          className="bg-white border border-slate-200 hover:border-blue-300 hover:shadow-md rounded-2xl p-3 shadow-sm group transition-all"
+                          className="bg-white border border-slate-200 hover:border-emerald-350 hover:shadow-md rounded-2xl p-3 shadow-sm group transition-all"
                           id={`vehicle-card-${vehicle.id}`}
                         >
                           <div className="flex items-center justify-between gap-1.5">
@@ -393,7 +393,7 @@ export default function DashboardOverview({
                                   <button
                                     onClick={() => moveVehicle(vehicle, 'backward')}
                                     disabled={columnKey === 'Hojalateria'}
-                                    className="p-1 bg-slate-50 text-slate-500 hover:text-blue-600 hover:bg-blue-50/50 rounded border border-slate-200 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
+                                    className="p-1 bg-slate-50 text-slate-500 hover:text-emerald-600 hover:bg-emerald-50 rounded border border-slate-200 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
                                     title="Subir etapa previa"
                                   >
                                     <ArrowLeft className="w-3.5 h-3.5" />
@@ -422,7 +422,7 @@ export default function DashboardOverview({
                                       }
                                     }}
                                     disabled={columnKey === 'Listo para Venta'}
-                                    className="p-1 bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-600 disabled:opacity-30 disabled:pointer-events-none rounded border border-blue-200 transition-all cursor-pointer"
+                                    className="p-1 bg-emerald-50 hover:bg-emerald-600 hover:text-white text-emerald-600 disabled:opacity-30 disabled:pointer-events-none rounded border border-emerald-250 transition-all cursor-pointer"
                                     title="Avanzar etapa"
                                   >
                                     <ArrowRight className="w-3.5 h-3.5" />
@@ -479,7 +479,7 @@ export default function DashboardOverview({
                       <th className="py-2.5 px-2 text-right">Compra</th>
                       <th className="py-2.5 px-2 text-right">Flete</th>
                       <th className="py-2.5 px-2 text-right">Nacionalización</th>
-                      <th className="py-2.5 px-2 text-right font-semibold text-blue-600">Total USD</th>
+                      <th className="py-2.5 px-2 text-right font-semibold text-emerald-700">Total USD</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
@@ -487,12 +487,12 @@ export default function DashboardOverview({
                       const totalImportCost = v.acquisitionCost + v.freightCost + v.nationalizationCost + v.otherExpenses;
                       return (
                         <tr key={v.id} className="hover:bg-slate-50/50 transition-colors">
-                          <td className="py-2.5 px-2 font-mono text-blue-600 font-bold">{v.vin}</td>
+                          <td className="py-2.5 px-2 font-mono text-emerald-700 font-bold">{v.vin}</td>
                           <td className="py-2.5 px-2 font-bold text-slate-800">{v.year} {v.brand} {v.model}</td>
                           <td className="py-2.5 px-2 text-right font-mono text-slate-600">${v.acquisitionCost.toLocaleString()}</td>
                           <td className="py-2.5 px-2 text-right font-mono text-slate-600">${v.freightCost.toLocaleString()}</td>
                           <td className="py-2.5 px-2 text-right font-mono text-slate-600">${v.nationalizationCost.toLocaleString()}</td>
-                          <td className="py-2.5 px-2 text-right font-mono text-blue-600 font-extrabold">${totalImportCost.toLocaleString()}</td>
+                          <td className="py-2.5 px-2 text-right font-mono text-emerald-750 font-extrabold">${totalImportCost.toLocaleString()}</td>
                         </tr>
                       );
                     })}
@@ -537,12 +537,12 @@ export default function DashboardOverview({
                   <tbody className="divide-y divide-slate-100">
                     {expenses.map((e) => (
                       <tr key={e.id} className="hover:bg-slate-50/50 transition-colors">
-                        <td className="py-2.5 px-2 font-mono text-blue-600 font-bold">{e.vin}</td>
+                        <td className="py-2.5 px-2 font-mono text-emerald-650 font-bold">{e.vin}</td>
                         <td className="py-2.5 px-2">
                           <span className={`px-2 py-0.5 rounded-full font-sans text-[8px] font-extrabold tracking-wider uppercase border ${
                             e.type === 'Hojalateria' ? 'bg-amber-50 text-amber-700 border-amber-200' :
                             e.type === 'Mecanica' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
-                            e.type === 'Clima' ? 'bg-blue-50 text-blue-700 border-blue-200' :
+                            e.type === 'Clima' ? 'bg-cyan-50 text-cyan-700 border-cyan-200' :
                             e.type === 'Estetica' ? 'bg-purple-50 text-purple-700 border-purple-200' :
                             'bg-slate-100 text-slate-600 border-slate-250'
                           }`}>
@@ -592,7 +592,7 @@ export default function DashboardOverview({
                     const profitValue = saleValue - totalInvested;
 
                     return (
-                      <div key={s.id} className="bg-slate-50 border border-slate-200 p-3 rounded-xl flex items-center justify-between gap-2 hover:border-blue-300 transition-colors">
+                      <div key={s.id} className="bg-slate-50 border border-slate-200 p-3 rounded-xl flex items-center justify-between gap-2 hover:border-emerald-300 transition-colors">
                         <div className="flex items-center gap-2 truncate">
                           <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 text-xs font-extrabold leading-none">
                             $
@@ -658,7 +658,7 @@ export default function DashboardOverview({
               {/* Insumos itemized list matching the image */}
               <div className="space-y-2 text-[11px]" id="insumos-list">
                 <div className="flex justify-between items-center bg-slate-50 p-2 rounded-lg hover:bg-slate-100 transition-colors">
-                  <span className="flex items-center gap-2 text-slate-600 font-semibold"><span className="w-1.5 h-1.5 rounded-full bg-blue-500" /> Productos Lavado (Champú)</span>
+                  <span className="flex items-center gap-2 text-slate-600 font-semibold"><span className="w-1.5 h-1.5 rounded-full bg-purple-500" /> Productos Lavado (Champú)</span>
                   <span className="font-mono font-bold text-slate-800">${(6500).toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between items-center bg-slate-50 p-2 rounded-lg hover:bg-slate-100 transition-colors">
@@ -698,15 +698,15 @@ export default function DashboardOverview({
 
                   {/* Spline Area */}
                   <path d="M 0 95 C 50 85, 100 45, 150 55 S 250 25, 300 15 L 300 100 L 0 100 Z" fill="url(#rechartsAreaGradLight)" />
-                  <path d="M 0 95 C 50 85, 100 45, 150 55 S 250 25, 300 15" fill="none" stroke="#2563eb" strokeWidth="2" />
+                  <path d="M 0 95 C 50 85, 100 45, 150 55 S 250 25, 300 15" fill="none" stroke="#8b5cf6" strokeWidth="2" />
                   
-                  <circle cx="150" cy="55" r="3" fill="#2563eb" />
+                  <circle cx="150" cy="55" r="3" fill="#8b5cf6" />
                   <circle cx="300" cy="15" r="3" fill="#10b981" />
 
                   <defs>
                     <linearGradient id="rechartsAreaGradLight" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#2563eb" stopOpacity="0.15" />
-                      <stop offset="100%" stopColor="#2563eb" stopOpacity="0" />
+                      <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.15" />
+                      <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
                     </linearGradient>
                   </defs>
                 </svg>
@@ -736,24 +736,24 @@ export default function DashboardOverview({
                   <line x1="0" y1="66" x2="300" y2="66" stroke="#efefef" strokeWidth="0.5" />
 
                   {/* Bars - Pair 1 */}
-                  <rect x="25" y="45" width="10" height="55" fill="#2563eb" rx="2" />
-                  <rect x="38" y="30" width="10" height="70" fill="#60a5fa" rx="2" />
+                  <rect x="25" y="45" width="10" height="55" fill="#047857" rx="2" />
+                  <rect x="38" y="30" width="10" height="70" fill="#34d399" rx="2" />
                   
                   {/* Bars - Pair 2 */}
-                  <rect x="85" y="55" width="10" height="45" fill="#2563eb" rx="2" />
-                  <rect x="98" y="40" width="10" height="60" fill="#60a5fa" rx="2" />
+                  <rect x="85" y="55" width="10" height="45" fill="#047857" rx="2" />
+                  <rect x="98" y="40" width="10" height="60" fill="#34d399" rx="2" />
 
                   {/* Bars - Pair 3 */}
-                  <rect x="145" y="25" width="10" height="75" fill="#2563eb" rx="2" />
-                  <rect x="158" y="20" width="10" height="80" fill="#60a5fa" rx="2" />
+                  <rect x="145" y="25" width="10" height="75" fill="#047857" rx="2" />
+                  <rect x="158" y="20" width="10" height="80" fill="#34d399" rx="2" />
 
                   {/* Bars - Pair 4 */}
-                  <rect x="205" y="15" width="10" height="85" fill="#2563eb" rx="2" />
-                  <rect x="218" y="35" width="10" height="65" fill="#60a5fa" rx="2" />
+                  <rect x="205" y="15" width="10" height="85" fill="#047857" rx="2" />
+                  <rect x="218" y="35" width="10" height="65" fill="#34d399" rx="2" />
 
                   {/* Bars - Pair 5 */}
-                  <rect x="260" y="30" width="10" height="70" fill="#2563eb" rx="2" />
-                  <rect x="273" y="10" width="10" height="90" fill="#60a5fa" rx="2" />
+                  <rect x="260" y="30" width="10" height="70" fill="#047857" rx="2" />
+                  <rect x="273" y="10" width="10" height="90" fill="#34d399" rx="2" />
                 </svg>
 
                 <div className="flex justify-between text-[8px] text-slate-400 font-mono mt-1 px-4">
@@ -766,8 +766,8 @@ export default function DashboardOverview({
               </div>
               
               <div className="flex items-center gap-3 text-[9px] text-slate-400 mt-2 font-bold uppercase">
-                <span className="flex items-center gap-1"><span className="w-2 h-2 bg-blue-600 rounded-sm" /> Ventas</span>
-                <span className="flex items-center gap-1"><span className="w-2 h-2 bg-blue-400 rounded-sm" /> Compras</span>
+                <span className="flex items-center gap-1"><span className="w-2 h-2 bg-emerald-700 rounded-sm" /> Ventas</span>
+                <span className="flex items-center gap-1"><span className="w-2 h-2 bg-emerald-400 rounded-sm" /> Compras</span>
               </div>
             </div>
 
@@ -792,10 +792,10 @@ export default function DashboardOverview({
                 <div className="space-y-1">
                   <div className="flex justify-between text-[11px] text-slate-700 font-bold">
                     <span>Tasa de Conversión</span>
-                    <span className="text-blue-600 font-extrabold">42% Leads</span>
+                    <span className="text-purple-600 font-extrabold">42% Leads</span>
                   </div>
                   <div className="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
-                    <div className="bg-blue-500 h-full w-[42%]" />
+                    <div className="bg-purple-500 h-full w-[42%]" />
                   </div>
                 </div>
 
@@ -815,7 +815,7 @@ export default function DashboardOverview({
         </div>
       ) : (
         <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm text-center py-8">
-          <ShieldAlert className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+          <ShieldAlert className="w-8 h-8 text-amber-500 mx-auto mb-2" />
           <span className="block font-sans font-bold text-slate-800 text-sm uppercase">Módulo 6: Dashboard de KPIs Financieros Bloqueado</span>
           <span className="text-slate-500 text-[10.5px] max-w-lg mx-auto block mt-1.5 leading-relaxed">
             Las metas de utilidades acumuladas mensuales, curvas splines de ISR/IVA aduanal, y tasas de conversión comercial son de carácter reservado. Su perfil actual de <strong>{role}</strong> carece de privilegios corporativos.

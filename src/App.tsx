@@ -311,9 +311,9 @@ export default function App() {
         );
       case 'Comprador':
         return (
-          <div className="bg-white border border-slate-200/80 border-l-4 border-l-blue-500 p-3 rounded-r-xl flex items-center justify-between text-[11px] text-slate-600 font-sans mb-4 shadow-sm" id="notice-buyer">
+          <div className="bg-white border border-slate-200/80 border-l-4 border-l-indigo-500 p-3 rounded-r-xl flex items-center justify-between text-[11px] text-slate-600 font-sans mb-4 shadow-sm" id="notice-buyer">
             <span className="flex items-center gap-2 font-semibold">
-              <AlertCircle className="w-4 h-4 text-blue-500 shrink-0" />
+              <AlertCircle className="w-4 h-4 text-indigo-500 shrink-0" />
               <span>Consola del <strong className="text-slate-900">Comprador y Logística</strong> activa. Inscribe carros adquiridos en subasta extranjeras y calcula aranceles de cruce.</span>
             </span>
           </div>
@@ -406,7 +406,7 @@ export default function App() {
             {/* HIGHLIGHTED FLASHY PWA INSTALL BUTTON */}
             <button 
               onClick={triggerPWAInstall}
-              className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-sans font-black text-[9px] md:text-[10px] uppercase py-2 px-3.5 rounded-xl shadow-lg shadow-indigo-600/20 active:translate-y-[1px] hover:scale-102 transition-all cursor-pointer animate-bounce shrink-0 border border-indigo-400 flex items-center gap-1.5"
+              className="bg-gradient-to-r from-emerald-600 via-teal-600 to-purple-600 hover:from-emerald-500 hover:to-purple-500 text-white font-sans font-black text-[9px] md:text-[10px] uppercase py-2 px-3.5 rounded-xl shadow-lg shadow-emerald-650/20 active:translate-y-[1px] hover:scale-102 transition-all cursor-pointer animate-bounce shrink-0 border border-emerald-400 flex items-center gap-1.5"
               id="pwa-install-header-btn"
             >
               <Smartphone className="w-3 md:w-3.5 h-3 md:h-3.5" />
@@ -419,7 +419,7 @@ export default function App() {
             
             <div className="text-[11px] font-bold text-slate-800 flex items-center gap-1.5 max-w-[120px] md:max-w-none truncate">
               {currentUser.name}
-              <span className="hidden xs:inline text-[9px] bg-blue-50 text-blue-600 py-0.5 px-1.5 border border-blue-100 rounded-md font-mono font-bold uppercase">
+              <span className="hidden xs:inline text-[9px] bg-emerald-50 text-emerald-700 py-0.5 px-1.5 border border-emerald-100 rounded-md font-mono font-bold uppercase">
                 {currentUser.role}
               </span>
             </div>

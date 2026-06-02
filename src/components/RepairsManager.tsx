@@ -151,7 +151,7 @@ export default function RepairsManager({
           <span className="text-sm font-mono font-black text-slate-800 block mt-1.5">${sumByCategory('Mecanica').toLocaleString('es-MX')}</span>
         </div>
         <div className="bg-white border border-slate-200/80 p-4 rounded-2xl shadow-sm hover:border-slate-300 transition-all text-center">
-          <span className="text-[10px] text-blue-600 font-bold uppercase tracking-wider block">Aire / Climas</span>
+          <span className="text-[10px] text-cyan-600 font-bold uppercase tracking-wider block">Aire / Climas</span>
           <span className="text-sm font-mono font-black text-slate-800 block mt-1.5">${sumByCategory('Clima').toLocaleString('es-MX')}</span>
         </div>
         <div className="bg-white border border-slate-200/80 p-4 rounded-2xl shadow-sm hover:border-slate-300 transition-all text-center">
@@ -172,7 +172,7 @@ export default function RepairsManager({
         <div className="bg-white border border-slate-200 p-5 rounded-3xl lg:col-span-1 shadow-sm flex flex-col justify-between h-fit">
           <div>
             <div className={`flex items-center gap-2 border-b pb-3 mb-4 ${editingExpenseId ? 'border-amber-500/30' : 'border-slate-100'}`}>
-              <Wrench className={`w-5 h-5 ${editingExpenseId ? 'text-amber-500' : 'text-blue-600'}`} />
+              <Wrench className={`w-5 h-5 ${editingExpenseId ? 'text-amber-500' : 'text-emerald-600'}`} />
               <h3 className="text-xs font-bold text-slate-700 uppercase tracking-wider">
                 {editingExpenseId ? 'Editar Cargo del Taller' : 'Registrar Gasto del Taller'}
               </h3>
@@ -188,7 +188,7 @@ export default function RepairsManager({
                     required
                     value={selectedVin}
                     onChange={(e) => setSelectedVin(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white rounded-xl p-2.5 text-slate-800 text-xs outline-none transition-all"
+                    className="w-full bg-slate-50 border border-slate-200 focus:border-emerald-500 focus:bg-white rounded-xl p-2.5 text-slate-800 text-xs outline-none transition-all"
                   >
                     <option value="">-- Seleccionar número de serie / VIN --</option>
                     {vehiclesInRepair.map((v) => (
@@ -211,7 +211,7 @@ export default function RepairsManager({
                   <select
                     value={expenseType}
                     onChange={(e) => setExpenseType(e.target.value as any)}
-                    className="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white rounded-xl p-2.5 text-slate-800 text-xs outline-none transition-all"
+                    className="w-full bg-slate-50 border border-slate-200 focus:border-emerald-500 focus:bg-white rounded-xl p-2.5 text-slate-800 text-xs outline-none transition-all"
                   >
                     <option value="Hojalateria">Hojalatería y pintura</option>
                     <option value="Mecanica">Mecánica general y suspensión</option>
@@ -231,7 +231,7 @@ export default function RepairsManager({
                       onClick={() => setSubtype('Refacciones')}
                       className={`text-[10px] font-bold py-1.5 rounded-lg transition-all cursor-pointer text-center ${
                         subtype === 'Refacciones' 
-                          ? 'bg-blue-600 text-white shadow-sm' 
+                          ? 'bg-emerald-600 text-white shadow-sm' 
                           : 'text-slate-600 hover:text-slate-800 hover:bg-slate-100'
                       }`}
                     >
@@ -242,7 +242,7 @@ export default function RepairsManager({
                       onClick={() => setSubtype('Mano de Obra')}
                       className={`text-[10px] font-bold py-1.5 rounded-lg transition-all cursor-pointer text-center ${
                         subtype === 'Mano de Obra' 
-                          ? 'bg-blue-600 text-white shadow-sm' 
+                          ? 'bg-emerald-600 text-white shadow-sm' 
                           : 'text-slate-600 hover:text-slate-800 hover:bg-slate-100'
                       }`}
                     >
@@ -257,7 +257,7 @@ export default function RepairsManager({
                   <input 
                     type="text" required placeholder="Bujías de iridio, bomba de agua, hojalateada"
                     value={concept} onChange={(e) => setConcept(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white rounded-xl p-2.5 text-xs text-slate-850 outline-none transition-all"
+                    className="w-full bg-slate-50 border border-slate-200 focus:border-emerald-500 focus:bg-white rounded-xl p-2.5 text-xs text-slate-850 outline-none transition-all"
                   />
                 </div>
 
@@ -267,7 +267,7 @@ export default function RepairsManager({
                   <input 
                     type="text" required placeholder="Autozone, Laminados El Chapo"
                     value={provider} onChange={(e) => setProvider(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white rounded-xl p-2.5 text-xs text-slate-850 outline-none transition-all"
+                    className="w-full bg-slate-50 border border-slate-200 focus:border-emerald-500 focus:bg-white rounded-xl p-2.5 text-xs text-slate-850 outline-none transition-all"
                   />
                 </div>
 
@@ -293,7 +293,7 @@ export default function RepairsManager({
                   <button
                     type="submit"
                     className={`flex-2 w-full text-white font-bold py-2.5 rounded-xl text-xs flex justify-center items-center gap-1.5 cursor-pointer transition-all ${
-                      editingExpenseId ? 'bg-amber-600 hover:bg-amber-500 shadow-md shadow-amber-605/10' : 'bg-blue-600 hover:bg-blue-500 shadow shadow-blue-600/10'
+                      editingExpenseId ? 'bg-amber-600 hover:bg-amber-500 shadow-md shadow-amber-605/10' : 'bg-emerald-600 hover:bg-emerald-505 shadow shadow-emerald-600/10'
                     }`}
                   >
                     <Wrench className="w-4 h-4" />
@@ -322,7 +322,7 @@ export default function RepairsManager({
         <div className="bg-white border border-slate-200 p-5 rounded-3xl lg:col-span-2 space-y-4 shadow-sm">
           <div className="flex justify-between items-center border-b border-slate-100 pb-3">
             <div className="flex items-center gap-2">
-              <Archive className="w-5 h-5 text-blue-600" />
+              <Archive className="w-5 h-5 text-indigo-650" />
               <h3 className="text-xs font-bold text-slate-700 uppercase tracking-wider">Bitácora Activa de Refacciones y Mano de Obra</h3>
             </div>
             <Activity className="w-4 h-4 text-emerald-500 animate-pulse" />
@@ -348,8 +348,8 @@ export default function RepairsManager({
                           <span className={`px-2 py-0.5 rounded-full font-sans text-[8.5px] font-extrabold tracking-wider uppercase border ${
                             expense.type === 'Hojalateria' ? 'bg-amber-50 text-amber-700 border-amber-200' :
                             expense.type === 'Mecanica' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
-                            expense.type === 'Clima' ? 'bg-blue-50 text-blue-700 border-blue-200' :
-                            expense.type === 'Cristales' ? 'bg-indigo-50 text-indigo-700 border-indigo-200' :
+                            expense.type === 'Clima' ? 'bg-cyan-50 text-cyan-700 border-cyan-200' :
+                            expense.type === 'Cristales' ? 'bg-purple-50 text-purple-700 border-purple-200' :
                             expense.type === 'Estetica' ? 'bg-purple-50 text-purple-700 border-purple-200' :
                             'bg-slate-100 text-slate-700 border-slate-300'
                           }`}>
@@ -358,7 +358,7 @@ export default function RepairsManager({
                           
                           <span className={`px-2 py-0.5 rounded-full font-sans text-[8.5px] font-extrabold tracking-wider uppercase border ${
                             expense.subtype === 'Mano de Obra' 
-                              ? 'bg-blue-50 text-blue-700 border-blue-200' 
+                              ? 'bg-indigo-50 text-indigo-700 border-indigo-150' 
                               : 'bg-rose-50 text-rose-700 border-rose-200'
                           }`}>
                             {expense.subtype || 'Refacciones'}
