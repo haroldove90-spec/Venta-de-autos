@@ -40,6 +40,7 @@ export interface Vehicle {
   imageUrl?: string;
   paymentMethod?: string;
   paymentDate?: string;
+  isActivatedInPipeline?: boolean; // Track physical entrance into the lot workshops
 }
 
 export interface Expense {

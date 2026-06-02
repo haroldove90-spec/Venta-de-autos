@@ -12,15 +12,46 @@ interface SidebarProps {
 
 export default function Sidebar({ activeTab, setActiveTab, currentUser, onLogout, onSwitchRole }: SidebarProps) {
   
-  const menuItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'inventory', label: 'Inventario (Stock)', icon: Car },
-    { id: 'imports', label: 'Importaciones', icon: Ship },
-    { id: 'repairs', label: 'Reparaciones (Taller)', icon: Wrench },
-    { id: 'sales', label: 'Ventas y Caja', icon: DollarSign },
-    { id: 'expenses', label: 'Gastos Operativos', icon: Wallet },
-    { id: 'reports', label: 'Reportes Mensuales', icon: FileBarChart }
-  ];
+  // Custom filter of menuItems depending on role permissions of the active user
+  const getMenuItemsForRole = (role: UserRole) => {
+    switch (role) {
+      case 'Comprador':
+        return [
+          { id: 'dashboard', label: 'Dashboard Resumen', icon: LayoutDashboard },
+          { id: 'imports', label: 'Importaciones', icon: Ship }
+        ];
+      case 'Taller':
+        return [
+          { id: 'dashboard', label: 'Dashboard Resumen', icon: LayoutDashboard },
+          { id: 'repairs', label: 'Reparaciones (Taller)', icon: Wrench }
+        ];
+      case 'Estetica':
+        return [
+          { id: 'dashboard', label: 'Dashboard Resumen', icon: LayoutDashboard },
+          { id: 'expenses', label: 'Insumos / Estética', icon: Wallet }
+        ];
+      case 'Contador':
+        return [
+          { id: 'dashboard', label: 'Dashboard Resumen', icon: LayoutDashboard },
+          { id: 'inventory', label: 'Inventario (Stock)', icon: Car },
+          { id: 'sales', label: 'Ventas y Caja', icon: DollarSign },
+          { id: 'reports', label: 'Reportes Mensuales', icon: FileBarChart }
+        ];
+      case 'Administrador':
+      default:
+        return [
+          { id: 'dashboard', label: 'Dashboard Resumen', icon: LayoutDashboard },
+          { id: 'inventory', label: 'Inventario (Stock)', icon: Car },
+          { id: 'imports', label: 'Importaciones', icon: Ship },
+          { id: 'repairs', label: 'Reparaciones (Taller)', icon: Wrench },
+          { id: 'sales', label: 'Ventas y Caja', icon: DollarSign },
+          { id: 'expenses', label: 'Gastos Operativos', icon: Wallet },
+          { id: 'reports', label: 'Reportes Mensuales', icon: FileBarChart }
+        ];
+    }
+  };
+
+  const menuItems = getMenuItemsForRole(currentUser.role);
 
   const getRoleIconMini = (role: UserRole) => {
     switch (role) {

@@ -101,6 +101,7 @@ export default function App() {
     const updated = { role: newRole, name: defaultNames[newRole] };
     setCurrentUser(updated);
     localStorage.setItem('autogestor_user', JSON.stringify(updated));
+    setActiveTab('dashboard'); // Force dynamic redirection to dashboard
   };
 
   // State Updates Managers
@@ -214,6 +215,7 @@ export default function App() {
           <ImportsManager 
             vehicles={vehicles}
             onUpdateVehicle={handleUpdateVehicle}
+            onAddVehicle={handleAddVehicle}
             role={currentUser.role}
           />
         );
@@ -262,46 +264,46 @@ export default function App() {
     switch (currentUser.role) {
       case 'Administrador':
         return (
-          <div className="bg-slate-900 border-l-4 border-amber-500 p-3 rounded-r-xl flex items-center justify-between text-[11px] text-slate-300 font-sans mb-4 shadow" id="notice-admin">
-            <span className="flex items-center gap-2 font-medium">
+          <div className="bg-white border border-slate-200/80 border-l-4 border-l-amber-500 p-3 rounded-r-xl flex items-center justify-between text-[11px] text-slate-600 font-sans mb-4 shadow-sm" id="notice-admin">
+            <span className="flex items-center gap-2 font-semibold">
               <ShieldAlert className="w-4 h-4 text-amber-500 shrink-0" />
-              <span>Consola del <strong>Administrador General (Dueño)</strong> activa. Permisos absolutos de auditoría, adquisición o depuración de lotes habilitados.</span>
+              <span>Consola del <strong className="text-slate-900">Administrador General (Dueño)</strong> activa. Permisos absolutos de auditoría, adquisición o depuración de lotes habilitados.</span>
             </span>
           </div>
         );
       case 'Comprador':
         return (
-          <div className="bg-slate-900 border-l-4 border-blue-500 p-3 rounded-r-xl flex items-center justify-between text-[11px] text-slate-300 font-sans mb-4 shadow" id="notice-buyer">
-            <span className="flex items-center gap-2 font-medium">
+          <div className="bg-white border border-slate-200/80 border-l-4 border-l-blue-500 p-3 rounded-r-xl flex items-center justify-between text-[11px] text-slate-600 font-sans mb-4 shadow-sm" id="notice-buyer">
+            <span className="flex items-center gap-2 font-semibold">
               <AlertCircle className="w-4 h-4 text-blue-500 shrink-0" />
-              <span>Consola del <strong>Comprador y Logística</strong> activa. Inscribe carros adquiridos en subasta extranjeras y calcula aranceles de cruce.</span>
+              <span>Consola del <strong className="text-slate-900">Comprador y Logística</strong> activa. Inscribe carros adquiridos en subasta extranjeras y calcula aranceles de cruce.</span>
             </span>
           </div>
         );
       case 'Taller':
         return (
-          <div className="bg-slate-900 border-l-4 border-emerald-500 p-3 rounded-r-xl flex items-center justify-between text-[11px] text-slate-300 font-sans mb-4 shadow" id="notice-workshop">
-            <span className="flex items-center gap-2 font-medium">
+          <div className="bg-white border border-slate-200/80 border-l-4 border-l-emerald-500 p-3 rounded-r-xl flex items-center justify-between text-[11px] text-slate-600 font-sans mb-4 shadow-sm" id="notice-workshop">
+            <span className="flex items-center gap-2 font-semibold">
               <AlertCircle className="w-4 h-4 text-emerald-500 shrink-0" />
-              <span>Consola del <strong>Jefe de Taller</strong> activa. Administra las fases físicas de laminado, afinación, y registra costos de refacciones en bitácora.</span>
+              <span>Consola del <strong className="text-slate-900">Jefe de Taller</strong> activa. Administra las fases físicas de laminado, afinación, y registra costos de refacciones en bitácora.</span>
             </span>
           </div>
         );
       case 'Estetica':
         return (
-          <div className="bg-slate-900 border-l-4 border-purple-500 p-3 rounded-r-xl flex items-center justify-between text-[11px] text-slate-300 font-sans mb-4 shadow" id="notice-aesthetic">
-            <span className="flex items-center gap-2 font-medium">
+          <div className="bg-white border border-slate-200/80 border-l-4 border-l-purple-500 p-3 rounded-r-xl flex items-center justify-between text-[11px] text-slate-600 font-sans mb-4 shadow-sm" id="notice-aesthetic">
+            <span className="flex items-center gap-2 font-semibold">
               <Sparkles className="w-4 h-4 text-purple-500 shrink-0" />
-              <span>Consola de <strong>Estética y Detallado</strong> activa. Marca unidades como terminadas (Listo para Venta) y controle mermas de insumos.</span>
+              <span>Consola de <strong className="text-slate-900">Estética y Detallado</strong> activa. Marca unidades como terminadas (Listo para Venta) y controle mermas de insumos.</span>
             </span>
           </div>
         );
       case 'Contador':
         return (
-          <div className="bg-slate-900 border-l-4 border-rose-500 p-3 rounded-r-xl flex items-center justify-between text-[11px] text-slate-300 font-sans mb-4 shadow" id="notice-accounting">
-            <span className="flex items-center gap-2 font-medium">
+          <div className="bg-white border border-slate-200/80 border-l-4 border-l-rose-500 p-3 rounded-r-xl flex items-center justify-between text-[11px] text-slate-600 font-sans mb-4 shadow-sm" id="notice-accounting">
+            <span className="flex items-center gap-2 font-semibold">
               <CheckCircle2 className="w-4 h-4 text-rose-500 shrink-0" />
-              <span>Consola de <strong>Contabilidad y Rentabilidad</strong> activa. Monitoreo del flujo de ingresos SPEI/Tarjetas y cálculo provisional ISR/IVA.</span>
+              <span>Consola de <strong className="text-slate-900">Contabilidad y Rentabilidad</strong> activa. Monitoreo del flujo de ingresos SPEI/Tarjetas y cálculo provisional ISR/IVA.</span>
             </span>
           </div>
         );
@@ -314,7 +316,7 @@ export default function App() {
   }
 
   return (
-    <div className="flex h-screen bg-slate-950 text-slate-100 overflow-hidden" id="app-main-view">
+    <div className="flex h-screen bg-slate-100 text-slate-800 overflow-hidden" id="app-main-view">
       
       {/* 1. Left Sidebar Navigation Panel */}
       <Sidebar 
@@ -326,24 +328,24 @@ export default function App() {
       />
 
       {/* 2. Main Content Board */}
-      <main className="flex-1 flex flex-col h-full bg-slate-950 overflow-hidden" id="dashboard-content-frame">
+      <main className="flex-1 flex flex-col h-full bg-[#f1f5f9] overflow-hidden" id="dashboard-content-frame">
         
         {/* Top interactive navbar */}
-        <header className="h-14 border-b border-slate-900 px-6 flex items-center justify-between shrink-0 bg-slate-900/10">
+        <header className="h-14 border-b border-slate-200 px-6 flex items-center justify-between shrink-0 bg-white shadow-sm">
           <div className="flex items-center gap-2 text-xs font-semibold text-slate-500">
             <span>Grupo Concesionarios del Lote</span>
             <span>/</span>
-            <span className="text-slate-300 capitalize">{activeTab}</span>
+            <span className="text-slate-700 capitalize font-bold">{activeTab}</span>
           </div>
           
           <div className="flex items-center gap-6">
-            <span className="text-[10px] font-mono text-slate-500 bg-slate-900 px-2.5 py-1 rounded-lg border border-slate-800">
+            <span className="text-[10px] font-mono text-slate-500 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200 font-bold">
               Servidor Activo • UTC-6 Monterrey
             </span>
-            <div className="text-[11px] font-bold text-white flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-blue-500" />
+            <div className="text-[11px] font-bold text-slate-800 flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
               {currentUser.name}
-              <span className="text-[9px] bg-blue-500/10 text-blue-400 py-0.5 px-1.5 border border-blue-500/20 rounded-md font-mono lowercase">
+              <span className="text-[9px] bg-blue-50 text-blue-600 py-0.5 px-1.5 border border-blue-100 rounded-md font-mono font-bold uppercase">
                 {currentUser.role}
               </span>
             </div>
@@ -351,7 +353,7 @@ export default function App() {
         </header>
 
         {/* Dynamic Inner Workspace body */}
-        <div className="flex-1 overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-slate-900">
+        <div className="flex-1 overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-slate-300">
           
           {/* Top warning alerts depending on selected role privileges */}
           {getRoleAlertNotice()}
